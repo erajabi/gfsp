@@ -2,10 +2,10 @@
 @background: #232B2B; /* RGB 35 43 43 - space gray*/
 @text_color_1: #41647B; /* RGB 65, 100, 123 - navy blue*/
 @text_color_2: #323B45; /* RGB 59, 59 , 69 - navy blue dark*/
-@active_text_color_1: #eea448; /* RGB 181 36 107 - purple haze*/
+@active_text_color_1: #eea448; /*yellow*/
 
-@search_button: #41647B; /* RGB 65, 100, 123 -navy blue */
-@search_button_hover: #B5246B; /* RGB 181 36 107 - purple haze*/
+@search_button: #41647B; /* navy blue */
+@search_button_hover: #eea448; /* yellow*/
 @warning_orange:  #FFA500;
 
 /* OER-AIMS SPECIFIC COLORS */
@@ -327,6 +327,7 @@ body{
 
 		display: inline-block;
 		padding-top: 5px;
+		padding-left:5px;
 		color: @navy_blue ;
 		width:100%;
 		text-decoration: none;
@@ -543,7 +544,70 @@ body{
 /******************************************************/
 /*					VIEW ITEM		 				  */
 /******************************************************/
+#view_item {
+	color:black;
 
+		#itemTitle {
+			margin-top: 2px;
+			margin-bottom: 2px;
+			font-weight: normal;
+			color: @navy_blue ;
+		}
+
+		#more_info{
+			margin:10px 2px;
+			font-weight: normal;
+			color: @navy_blue ;
+		}
+
+
+		ul {
+			list-style: none;
+			padding-left: 0px;
+			margin-top: 0px;
+		}
+
+		a {
+			text-decoration: none;
+			color: @navy_blue;
+			font-weight: bold;
+		}
+
+		.label {
+			font-size: 1.1em;
+			font-style: italic;
+			color: @navy_blue ;
+		}
+
+	#left_sidebar {
+		padding-left: 5px;
+		width: 25%;
+		float:left;
+
+		/* mobile */
+		@media all and (max-width: 480px) {
+			width: 100%;
+			float:none;
+		}
+	}
+
+	#main_content {
+		width: 73%;
+		float:right;
+		border-left: 1px solid @active_text_color_1;
+		padding-left: 5px;
+
+
+		/* mobile */
+		@media all and (max-width: 480px) {
+			width: 100%;
+			float:none;
+			border-left: none;
+			padding-left:0px;
+		}
+	}
+
+}
 
 
 

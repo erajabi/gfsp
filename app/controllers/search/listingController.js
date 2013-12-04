@@ -52,6 +52,8 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 		    	for(facet in $scope.facets) {
 		    		facet==0 ? query_facets += $scope.facets[facet] : query_facets += ","+$scope.facets[facet];
 		    	}
+
+		    	console.log($scope.facets);
 			}
 		//create the query for ACTIVE FACETS
 			//-check activeFacets
@@ -79,8 +81,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 		//limit facets number per facet
 		var limitFacetsNumber = '&facet_size='+$scope.limit_facets_number;
 
-		//FACETS LIMITATION
-		//!! FIX TO CHANGE FROM conf.json
+
 		var limitFacets = '';
 		for(i in $scope.limit_facets) {
 			limitFacets += '&' + i + "=";
@@ -120,6 +121,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 	$scope.search = function(query) {
 
 		$http.get(query).success(function(data) {
+			console.log(query);
 			console.log(data);
 
 			/*Add facets*/

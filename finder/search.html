@@ -7,8 +7,6 @@
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet/less" type="text/css" href="../css/style.less" />
-	<link rel="stylesheet" type="text/css" media="screen and (min-width: 480px) and (max-width: 768px)" href="../css/style_tablet.less" />
-	<link rel="stylesheet" type="text/css" media="screen and (max-width: 480px)" href="../css/style_mobile.less" />
 
 </head>
 
@@ -36,7 +34,7 @@
 
 		            		<!-- 'facet' is the actual facet name and term.term is the machine name for the term -->
 			            	<a ng-repeat="term in inactiveFacets[0][facet.toString()].terms" class="child" href="javascript:;" ng-click="selectFacet(term.term, facet, term.count)">
-			            		<span class="value">{{term.term}} {{ mapping[facet][term.term] }}</span>
+			            		<span class="value">{{ mapping[facet][term.term] || term.term  }}</span>
 			            		<span class="count">{{ term.count }}</span>
 			            	</a>
 
