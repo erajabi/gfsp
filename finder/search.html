@@ -52,7 +52,7 @@
 		             <div ng-show="enableFacets" class="facets row">
 		            	<div class="facet_title" >Active facets</div>
 		            	<div ng-repeat="links in activeFacets" >
-		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{mapping[links.facet][links.term]}}<span class="remove_facet"> x </span></a>
+		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{mapping[links.facet][links.term] || links.term}}<span class="remove_facet"> x </span></a>
 	            		</div>
 		            </div>
 	            </div>
@@ -92,9 +92,10 @@
 	            <!-- results -->
 		            	<li class="snippet" ng-repeat="result in filtered = (results | filter:filterResults) ">
 				            <b>Title:</b>{{result.title}}
-							<br> <b>Description:</b> {{result.description}}
+							<br> <b>Description:</b> 
+								<span ng-repeat="desc in result.listingDescription">{{desc}}<br></span>
 							<br> <b>Keywords:</b> <span ng-repeat="keys in result.keywords">{{keys}}, &nbsp;</span>
-							<br> <a class="view_more" target="_self" href="item.html?id={{result.id}}_{{result.set}}"> View More </a>
+							<br> <a class="view_more" target="_self" href="item.html?set={{result.set}}&id={{result.id}}&"> View More </a>
 			            </li>
 		            </ul>
 			</div>

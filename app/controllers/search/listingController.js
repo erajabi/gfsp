@@ -7,7 +7,6 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 	*/
 	$rootScope.findElements = function(init)
 	{
-		console.log('find_elements');
 		//enable loading indicator : true/false
 		$scope.loading = true;
 		//enable error message : true/false
@@ -52,8 +51,6 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 		    	for(facet in $scope.facets) {
 		    		facet==0 ? query_facets += $scope.facets[facet] : query_facets += ","+$scope.facets[facet];
 		    	}
-
-		    	console.log($scope.facets);
 			}
 		//create the query for ACTIVE FACETS
 			//-check activeFacets
@@ -121,9 +118,6 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 	$scope.search = function(query) {
 
 		$http.get(query).success(function(data) {
-			console.log(query);
-			console.log(data);
-
 			/*Add facets*/
 			if($scope.enableFacets) {
 				$scope.inactiveFacets.length = 0;/*clear results*/
@@ -168,7 +162,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 			var equals = "";
 			for(index in snippet_elements)
 			{
-				if(snippet_elements[index] in thisJson.languageBlocks[$scope.selectedLanguage])
+				if(snippet_elements[index] in thisJson.languageBlocks[$scope.selectedLanguage] )
 				{
 					if(thisJson.languageBlocks[$scope.selectedLanguage][snippet_elements[index]]!=null)
 					{
@@ -181,6 +175,23 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 				}
 			}
 
+			//DESCRIPTION
+			if(thisJson.languageBlocks[$scope.selectedLanguage].description) {
+				$scope.listingDescription = thisJson.languageBlocks[$scope.selectedLanguage].description.split("||");
+				temp = ",\"listingDescription\":[]";
+				for(j in $scope.listingDescription) {
+					if( j != 0) {
+						temp = temp.split(']')[0] + ",\""+$scope.listingDescription[j]+"\"]";
+					} else {
+						temp = temp.split(']')[0] + "\""+$scope.listingDescription[j]+"\"]";
+					}
+				}
+				equals+= temp;
+			} else {
+				$scope.listingDescription = '-';
+			}
+
+			//KEYWORDS
 			if(thisJson.languageBlocks.en.keywords) {
 				
 				var temp = '';

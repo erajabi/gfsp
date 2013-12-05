@@ -20,7 +20,6 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	//get properties from conf.json
 	$http.get($scope.conf_file)
 	.success(function(data) {
-	console.log('success me');
 	/*-----------------------------------FINDER SETTINGS FROM CONFIG FILE-----------------------------------*/
 		$scope.limit_facets = data.limit_facets;
 		$scope.akif = data.baseUrl;

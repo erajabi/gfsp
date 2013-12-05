@@ -46,8 +46,8 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 	/************************************************** GET ITEM *****************************/
 	$scope.getItem = function() {
 
-		var item_identifier = $location.search().id.split('_')[0]; //SET_ID
-		var item_set = $location.search().id.split('_')[1];
+		var item_identifier = $location.search().id; //SET_ID
+		var item_set = $location.search().set;
 
 		var headers = {'Content-Type':'application/json','Accept':'application/json;charset=utf-8'};
 
@@ -69,20 +69,31 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 
 				languageBlock = thisJson.languageBlocks['en'];
 
+				//TITLE
 				languageBlock.title !== undefined ? $scope.item_title = languageBlock.title : $scope.item_title = '-';
 
-				languageBlock.description !== undefined ? $scope.item_description = languageBlock.description : $scope.item_description ='-';
+				//DESCRIPTION
+				if(languageBlock.description !== undefined) {
+					$scope.item_description = languageBlock.description.split("||");
+				} else {
+					$scope.item_description = '-';
+				}
 
+				//KEYWORDS
 				languageBlock.keywords !== undefined ? $scope.item_keywords = languageBlock.keywords : $scope.item_keywords = '-';
 
+				//COVERAGE
 				languageBlock.coverage !== undefined ? $scope.item_coverage = languageBlock.coverage : $scope.item_coverage = '-';
 
 			}
 
+			//ORGANIZATION
 			thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
 
+			//LANGUAGE
 			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
 
+			//KEY AUDIENCE
 			$scope.item_roles = [];
 			if(thisJson.tokenBlock.endUserRoles !== undefined) {
 				for(i in thisJson.tokenBlock.endUserRoles) {
