@@ -181,6 +181,18 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 				}
 			}
 
+			if(thisJson.languageBlocks.en.keywords) {
+				
+				var temp = '';
+				for(i in thisJson.languageBlocks.en.keywords) {
+					temp += '\"'+thisJson.languageBlocks.en.keywords[i]+'\"';
+					if( i!=thisJson.languageBlocks.en.keywords.length-1) {
+						temp += ' , ';
+					}
+				}
+				equals += '\ , "keywords\" :[ ' + temp + ']';
+			}
+
 			//WE MUST HAVE ID & SET IN ORDER TO VIEW ITEM
 			if(thisJson.identifier) {
 				equals += '\ , "id\" : \"' + thisJson.identifier + '\"';

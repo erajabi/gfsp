@@ -93,6 +93,7 @@
 		            	<li class="snippet" ng-repeat="result in filtered = (results | filter:filterResults) ">
 				            <b>Title:</b>{{result.title}}
 							<br> <b>Description:</b> {{result.description}}
+							<br> <b>Keywords:</b> <span ng-repeat="keys in result.keywords">{{keys}}, &nbsp;</span>
 							<br> <a class="view_more" target="_self" href="item.html?id={{result.id}}_{{result.set}}"> View More </a>
 			            </li>
 		            </ul>
