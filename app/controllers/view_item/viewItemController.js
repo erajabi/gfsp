@@ -10,6 +10,15 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 	/*****************************************************************************************************************/
 	/*							  	GENERAL												  						     */
 	/*****************************************************************************************************************/
+
+	var language_mapping=[], audience_mapping=[];
+	language_mapping['en'] = "English";
+	audience_mapping['parent'] = "Food industry professionals";
+	audience_mapping['teacher'] = "Policy makers";
+	audience_mapping['manager'] = "Middle/senior management in food companies/institutions";
+	audience_mapping['author'] = "Retail food workers";
+	audience_mapping['learner'] = "Learner";
+
 	/*AKIF URL*/
 	$scope.akif = 'http://54.228.180.124:8080/search-api/v1/akif/';
 	//$scope.item_resource_id = '';
@@ -51,8 +60,9 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 		.success(function(data) {
 			//parse array and create an JS Object Array
 			//every item is a JSON
-			//console.log(data);
+
 			var thisJson = data.results[0];
+			console.log(thisJson);
 
 			//WE USE ONLY 'EN' FOR NOW
 			if (thisJson.languageBlocks.en !== undefined) {
@@ -71,26 +81,40 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 
 			thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
 
-			thisJson.expressions[0].language !== undefined ? $scope.item_language = thisJson.expressions[0].language : $scope.item_language = '-';
+			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
 
 			$scope.item_roles = [];
 			if(thisJson.tokenBlock.endUserRoles !== undefined) {
 				for(i in thisJson.tokenBlock.endUserRoles) {
-					$scope.item_roles.push(thisJson.tokenBlock.endUserRoles[i]);
+					var temp = audience_mapping[thisJson.tokenBlock.endUserRoles[i]];
+					if( i != thisJson.tokenBlock.endUserRoles.length-1 ) {
+						temp += ',';	
+					}
+
+					$scope.item_roles.push(temp);
 				}
 			} else {
 				$scope.item_roles = '-';
 			}
 
 			if (thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology'] !== undefined) {
-				console.log(thisJson.tokenBlock.taxonPaths);
 				$scope.item_classification =[];
 
+				// i.e : http://www.cc.uah.es/ie/ont/OE-Predicates#Methodology :: http://www.cc.uah.es/ie/ont/OE-OAAE#PestControl
+				// we want to keep : Methodology::PestControl
+
 				for(i in thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology']) {
-					urls = thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology'][i].split('::');
+					urls = thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology'][i].split(' ::');
+					var temp = '';
 					for(j in urls) {
-						$scope.item_classification.push(urls[j].split("#")[1]);
+						temp += urls[j].split("#")[1];
+						j == urls.length-2 ? temp += '::' : temp += '';
 					}
+
+					// commas
+					i != thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology'].length-1 ? temp += ', ' : temp += '';
+					
+					$scope.item_classification.push(temp);
 				}
 			} else {
 				$scope.item_classification = '-';
