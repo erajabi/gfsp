@@ -25,6 +25,7 @@
 
 			<!-- facets (left sidebar)-->
 			<div>
+
 				<!-- <a ng-click="enableFacets=!enableFacets">Facets</a> -->
 	            <div id="facets" ng-show="enableFacets" ng-controller="facetsController">
 	            	<!-- active facets -->
@@ -36,11 +37,9 @@
 			            	<a ng-repeat="term in inactiveFacets[0][facet.toString()].terms" class="child" href="javascript:;" ng-click="selectFacet(term.term, facet, term.count)">
 			            		<span class="value">{{ mapping[facet][term.term] || term.term  }}</span>
 			            		<span class="count">{{ term.count }}</span>
-			            	</a>
+			            	</a>
 
 		            </div>
-
-					<div><a class="reset_search" href="javascript:;" ng-click="resetLocation()">Clear Search</a></div>
 
 	            </div>
 			</div>
@@ -48,11 +47,12 @@
 			<!-- listing -->
 			<div id="listing_container">
 				<div id="active_facets" ng-show="enableFacets" ng-controller="facetsController">
+					<div><a class="reset_search" href="javascript:;" ng-click="resetLocation()">Clear Search</a></div>
 					 <!-- active facets -->
 		             <div ng-show="enableFacets" class="facets row">
 		            	<div class="facet_title" >Active facets</div>
 		            	<div ng-repeat="links in activeFacets" >
-		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{links.term}} <span class="remove_facet"> x </span></a>
+		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{mapping[links.facet][links.term]}}<span class="remove_facet"> x </span></a>
 	            		</div>
 		            </div>
 	            </div>
