@@ -64,10 +64,27 @@ body{
 	border-bottom: 1px solid @light_raf;
 }
 
+.breadcrumb {
+
+	border-bottom: 1px solid @light_raf;
+	border-top: 1px solid @light_raf;
+	margin: 0px 10px 10px 10px; 
+	
+	a {
+		text-decoration: none;
+		color: @text_color_1;
+		font-weight: bold;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}
+
 #akListing {
 
 	display:table;
-	margin:0px auto;
+	margin:0px auto 20px auto;
 	.rounded-corners(10px);
 	padding:1em 0;
 	background-color: rgba(35, 43, 43, 0.1);
@@ -344,6 +361,7 @@ body{
 		.value{
 			width:155px;
 			float:left;
+			font-size: medium;
 		}
 
 		.count{
@@ -458,6 +476,7 @@ body{
 /*					LISTING	 				 		  */
 /******************************************************/
 .result_inform {
+	font-size: medium;
 	display: inline-block;
 	margin:5px auto;
 	padding-top: 5px;
