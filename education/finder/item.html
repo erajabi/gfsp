@@ -19,7 +19,7 @@
 	    </form>
 
         <div id="akListing" ng-app="akListing" >
-            <div class="breadcrumb"><a href="javascript:history.back()"> Back to Search</a></div>
+            <div class="breadcrumb"><a href="../../index.html" target="_self"> Home </a> &gt; <a href="javascript:history.back()"> Back to Search</a></div>
             <div id="view_item" ng-controller="viewItemController" ng-init="getItem()" class="row">
 
 				<article id="main_content">
@@ -52,8 +52,8 @@
 						 <li><span class="label">Educational Context: </span> <span ng-repeat="contexts in item_educational_contexts"> {{contexts}} </span></li>
 						 <li><span class="label">Key Audience: </span> <span ng-repeat="roles in item_roles"> {{roles}} </span></li>
 						 <li><span class="label">Typical Age Range: </span>  {{item_ageRange}} </li>
-						 <li><span class="label">Collection: </span>  {{item_collection}} </li>
-						 <li><span class="label">Media Format: </span>  {{}} </li>
+						 <!--<li><span class="label">Collection: </span>  {{item_collection}} </li>
+						 <li><span class="label">Media Format: </span>  {{}} </li>-->
 
 					 </ul>
 				</article>
