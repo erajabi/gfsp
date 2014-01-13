@@ -45,6 +45,28 @@
       "machine": "library"
     }
   ],
+  "endUserRoles": [
+    {
+      "human": "Learner",
+      "machine": "learner"
+    },
+    {
+      "human": "Middle/senior management in food companies/institutions",
+      "machine": "manager"
+    },
+    {
+      "human": "Food industry professionals",
+      "machine": "parent"
+    },
+    {
+      "human": "Retail food workers",
+      "machine": "author"
+    },
+    {
+      "human": "Policy Makers",
+      "machine": "teacher"
+    }
+  ],
   "facets": [
     {
       "human": "Organization",
@@ -431,6 +453,10 @@
       "machine": "prodinraagro"
     },
     {
+      "human": "Global Food Safety Partnership",
+      "machine": "aglrgfsp"
+    },
+    {
       "human": "Natural History Museum of Lisbon",
       "machine": "edumnhn"
     },
@@ -494,26 +520,5 @@
       "human": "Agricom Jobs",
       "machine": "agricomjobs"
     }
-  ],
-   "endUserRoles": [
-    {
-      "human": "Learner",
-      "machine": "learner"
-    },
-    {
-      "human": "Middle/senior management in food companies/institutions",
-      "machine": "manager"
-    },
-    {
-      "human": "Food industry professionals",
-      "machine": "parent"
-    },
-    {
-      "human": "Retail food workers",
-      "machine": "author"
-    },
-    {
-      "human": "Policy Makers",
-      "machine": "teacher"
-    }]
+  ]
 }

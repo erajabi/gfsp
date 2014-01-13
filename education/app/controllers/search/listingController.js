@@ -122,9 +122,10 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 			if($scope.enableFacets) {
 				$scope.inactiveFacets.length = 0;/*clear results*/
 				$scope.inactiveFacets.push(data.facets);
-
 			}
+			console.log($scope.inactiveFacets);
 
+			
 			//Print snippets
 			$scope.results.length = 0;//clear results
 			angular.forEach(data.results, function(result, index){

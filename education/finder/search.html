@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> GFSP </title>
+	<title> GFSP - EDUCATIONAL RESOURCES</title>
 	<!-- INCLUDE REQUIRED THIRD PARTY LIBRARY JAVASCRIPT AND CSS -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -92,10 +92,10 @@
 	            <!-- results -->
 		            	<li class="snippet" ng-repeat="result in filtered = (results | filter:filterResults) ">
 				            <b>Title:</b>{{result.title}}
-							<br> <b>Description:</b> 
+							<br> <b>Description:</b>
 								<span ng-repeat="desc in result.listingDescription">{{desc}}<br></span>
 							<br> <b>Keywords:</b> <span ng-repeat="keys in result.keywords">{{keys}}, &nbsp;</span>
-							<br> <a class="view_more" target="_self" href="item.html?set={{result.set}}&id={{result.id}}&"> View More </a>
+							<br> <a class="view_more" target="_self" href="item.html?set={{result.set}}&id={{result.id}}"> View More </a>
 			            </li>
 		            </ul>
 			</div>
