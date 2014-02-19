@@ -51,20 +51,24 @@
       "machine": "learner"
     },
     {
-      "human": "Middle/senior management in food companies/institutions",
+      "human": "Manager",
       "machine": "manager"
     },
     {
-      "human": "Food industry professionals",
+      "human": "Parent",
       "machine": "parent"
     },
     {
-      "human": "Retail food workers",
+      "human": "Author",
       "machine": "author"
     },
     {
-      "human": "Policy Makers",
+      "human": "Teacher",
       "machine": "teacher"
+    },
+    {
+      "human": "Councelor",
+      "machine": "councelor"
     }
   ],
   "facets": [
@@ -77,7 +81,7 @@
       "machine": "languageBlocks.en.coverage"
     },
     {
-      "human": "Sets",
+      "human": "Collection",
       "machine": "set"
     },
     {

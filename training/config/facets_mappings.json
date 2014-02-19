@@ -47,11 +47,11 @@
   ],
   "endUserRoles": [
     {
-      "human": "Learner",
+      "human": "Food safety practitioners and students",
       "machine": "learner"
     },
     {
-      "human": "Middle/senior management in food companies/institutions",
+      "human": "Food managers & Quality Assurance Personnel",
       "machine": "manager"
     },
     {
@@ -59,12 +59,20 @@
       "machine": "parent"
     },
     {
-      "human": "Retail food workers",
+      "human": "Food service employees",
       "machine": "author"
     },
     {
       "human": "Policy Makers",
       "machine": "teacher"
+    },
+    {
+      "human": "Policy Makers",
+      "machine": "policy makers"
+    },
+    {
+      "human": "Food Handler",
+      "machine": "councelor"
     }
   ],
   "facets": [

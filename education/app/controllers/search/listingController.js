@@ -125,7 +125,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 			}
 			console.log($scope.inactiveFacets);
 
-			
+
 			//Print snippets
 			$scope.results.length = 0;//clear results
 			angular.forEach(data.results, function(result, index){
@@ -146,7 +146,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 		.error(function(error) {
 			    $scope.loading = false;
 			    $scope.error = true;
-			    console.log("--F@ck!n' error on $http.get : " + query);
+			    console.log("Error on $http.get : " + query);
 		});
 	}
 
@@ -194,7 +194,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 
 			//KEYWORDS
 			if(thisJson.languageBlocks.en.keywords) {
-				
+
 				var temp = '';
 				for(i in thisJson.languageBlocks.en.keywords) {
 					temp += '\"'+thisJson.languageBlocks.en.keywords[i]+'\"';
@@ -217,7 +217,6 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 			temp = '{' + equals + '}';
 
 			//return every snippet as JSON
-			//console.log(temp);
 			return JSON.parse($scope.sanitize(temp));
 		}
 		else

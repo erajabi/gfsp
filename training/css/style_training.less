@@ -27,35 +27,6 @@
 * Mobile 2 - 320px w
 */
 
-body{
-	width:100%;
-	margin:0 auto;
-	font: 1.1em Open Sans,Arial,Helvetica,sans-serif; /* lighter */
-	color:@text_color_1;
-
-	.row{
-		display: inline-block;
-		width:100%;
-	}
-}
-
-#header {
-	background-image: url('../assets/images/gfsp.png');
-	min-height: 150px;
-	background-size: cover;
-	max-width: 1010px;
-	margin:0px auto;
-
-	/* tablet */
-	@media all and (min-width: 480px) and (max-width: 768px) {
-		min-height: 100px;
-	}
-	/* mobile */
-	@media all and (max-width: 480px) {
-		background-image: url('../assets/images/gfsp_min.png');
-		min-height: 100px;
-	}
-}
 
 .title {
 	text-align: center;
@@ -67,9 +38,8 @@ body{
 .breadcrumb {
 
 	border-bottom: 1px solid @light_raf;
-	border-top: 1px solid @light_raf;
-	margin: 0px 10px 10px 10px; 
-	
+	margin: 0px 10px 10px 10px;
+
 	a {
 		text-decoration: none;
 		color: @text_color_1;
@@ -84,10 +54,11 @@ body{
 #akListing {
 
 	display:table;
-	margin:0px auto 20px auto;
+	margin: 10px auto 20px auto;
+	padding:1em 5px;
 	.rounded-corners(10px);
-	padding:1em 0;
-	background-color: rgba(35, 43, 43, 0.1);
+	background-color: rgba(255,255,255,0.8);
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
 
 	/* screen */
 	@media all {
@@ -115,8 +86,8 @@ body{
 	.rounded-corners(4px);
 	text-decoration: none;
 	color:white;
-	float:left;
-	margin:5px 10px;
+	float:right;
+	margin:10px 0px 3px;
 	font-size: 0.8em;
 	padding:2px;
 
@@ -322,7 +293,9 @@ body{
 }
 
 .facet_title {
-	text-align: center;
+	padding-top: 4px;
+	margin-right: 4px;
+	float: left;
 }
 
 #facets {
@@ -394,6 +367,11 @@ body{
 		margin-bottom:5px;
 		.rounded-corners(3px);
 
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
 	}
 }
 
@@ -402,8 +380,6 @@ body{
 	width:100%;
 	padding-bottom: 5px;
 	margin-top: 10px;
-	border-top: 1px solid @light_raf;
-	border-bottom: 1px solid @light_raf;
 
 	a {
 		padding:1px 3px;

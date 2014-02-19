@@ -62,7 +62,6 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			//every item is a JSON
 
 			var thisJson = data.results[0];
-			console.log(thisJson);
 
 			//WE USE ONLY 'EN' FOR NOW
 			if (thisJson.languageBlocks.en !== undefined) {
@@ -97,13 +96,12 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			thisJson.tokenBlock.ageRange !== undefined ? $scope.item_ageRange = thisJson.tokenBlock.ageRange : $scope.item_ageRange = '-';
 
 			//COLLECTION (SET)
-			thisJson.set !== undefined ? $scope.item_collection = thisJson.set : $scope.item_collection = '-';
+			thisJson.set !== undefined ? $scope.item_collection = thisJson.set.toLowerCase() : $scope.item_collection = '-';
 
 			//KEY AUDIENCE
 			$scope.item_roles = [];
 			if(thisJson.tokenBlock.endUserRoles !== undefined) {
 				for(i in thisJson.tokenBlock.endUserRoles) {
-					//var temp = audience_mapping[thisJson.tokenBlock.endUserRoles[i]];
 					var temp = thisJson.tokenBlock.endUserRoles[i];
 					if( i != thisJson.tokenBlock.endUserRoles.length-1 ) {
 						temp += ',';
@@ -119,7 +117,6 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			$scope.item_learning_resource_types = [];
 			if(thisJson.tokenBlock.learningResourceTypes !== undefined) {
 				for(i in thisJson.tokenBlock.learningResourceTypes) {
-					//var temp = audience_mapping[thisJson.tokenBlock.endUserRoles[i]];
 					var temp = thisJson.tokenBlock.learningResourceTypes[i];
 					if( i != thisJson.tokenBlock.learningResourceTypes.length-1 ) {
 						temp += ',';
@@ -135,7 +132,6 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			$scope.item_educational_contexts = [];
 			if(thisJson.tokenBlock.contexts !== undefined) {
 				for(i in thisJson.tokenBlock.contexts) {
-					//var temp = audience_mapping[thisJson.tokenBlock.endUserRoles[i]];
 					var temp = thisJson.tokenBlock.contexts[i];
 					if( i != thisJson.tokenBlock.contexts.length-1 ) {
 						temp += ',';
@@ -145,6 +141,24 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 				}
 			} else {
 				$scope.item_educational_contexts = '-';
+			}
+
+			//Media Format
+			$scope.item_media_format = '';
+			if(thisJson !== undefined) {
+				//console.error(thisJson);
+				$scope.item_media_format = 'in';
+				/*
+				for(i in thisJson.tokenBlock.contexts) {
+					var temp = thisJson.tokenBlock.contexts[i];
+					if( i != thisJson.tokenBlock.contexts.length-1 ) {
+						temp += ',';
+					}
+					$scope.item_educational_contexts.push(temp);
+				}
+				*/
+			} else {
+				$scope.item_media_format = 'theo';
 			}
 
 
