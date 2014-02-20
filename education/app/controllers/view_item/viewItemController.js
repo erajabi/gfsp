@@ -11,13 +11,14 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 	/*							  	GENERAL												  						     */
 	/*****************************************************************************************************************/
 
-	var language_mapping=[], audience_mapping=[];
+	var language_mapping=[], collection_mapping=[];
 	language_mapping['en'] = "English";
-	audience_mapping['parent'] = "Food industry professionals";
-	audience_mapping['teacher'] = "Policy makers";
-	audience_mapping['manager'] = "Middle/senior management in food companies/institutions";
-	audience_mapping['author'] = "Retail food workers";
-	audience_mapping['learner'] = "Learner";
+
+	collection_mapping['aglrfoodsafety'] = "Food Safety OER";
+	collection_mapping['faocapacityportal'] = "";
+	collection_mapping['aglrfaocapacityportal'] = "";
+	collection_mapping['optunesco'] = "Unesco Training Platform";
+	collection_mapping['aglrfaocdx'] = "FAO Codex";
 
 	/*AKIF URL*/
 	$scope.akif = 'http://54.228.180.124:8080/search-api/v1/akif/';
@@ -63,6 +64,8 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 
 			var thisJson = data.results[0];
 
+			console.log(thisJson);
+
 			//WE USE ONLY 'EN' FOR NOW
 			if (thisJson.languageBlocks.en !== undefined) {
 
@@ -89,14 +92,15 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			//ORGANIZATION
 			thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
 
+			//COLLECTION (SET)
+			thisJson.set !== undefined ? $scope.item_collection = collection_mapping[thisJson.set.toLowerCase()] : $scope.item_collection = '-';
+
 			//LANGUAGE
 			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
 
 			//AGE RANGE
 			thisJson.tokenBlock.ageRange !== undefined ? $scope.item_ageRange = thisJson.tokenBlock.ageRange : $scope.item_ageRange = '-';
 
-			//COLLECTION (SET)
-			thisJson.set !== undefined ? $scope.item_collection = thisJson.set.toLowerCase() : $scope.item_collection = '-';
 
 			//KEY AUDIENCE
 			$scope.item_roles = [];

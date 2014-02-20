@@ -14,14 +14,16 @@
 <body>
 		<div id="header"></div>
 
-		<form class="form-wrapper cf" action="search.html">
-	        <input name="q" type="text" placeholder="Search here..." required>
-	        <button type="submit">Search</button>
-	    </form>
 
         <div id="akListing" ng-app="akListing" >
             <div class="breadcrumb"><a href="../../index.html" target="_self"> Home </a> &gt; <a href="javascript:history.back()"> Back to Search</a></div>
             <div id="view_item" ng-controller="viewItemController" ng-init="getItem()" class="row">
+
+				<form class="form-wrapper cf" action="search.html">
+			        <input name="q" type="text" placeholder="Search here..." required>
+			        <button type="submit">Search</button>
+			    </form>
+
 
 				<article id="main_content">
 	                <header>
@@ -61,6 +63,9 @@
 		</div>
     </div>
 
+
+	<!-- Footer -->
+	<div id="footer"></div>
 
 	<!-- INCLUDE APPLICATION SPECIFIC CSS AND JAVASCRIPT -->
 	<script type="text/javascript" src="../lib/angular.min.js"></script>

@@ -41,22 +41,51 @@ body{
 }
 
 #header {
-	background-image: url('../assets/images/gfsp.png');
+	background-image: url('../assets/images/gfsp_logo.png');
 	min-height: 150px;
-	max-width: 700px;
+	max-width: 100%;
+	min-width: 1000px;
 	margin:0px auto;
+	background-repeat: no-repeat;
+	background-color: white;
+	background-position-x: center;
 	.rounded-corners(5px);
+	box-shadow: 10px 0px 6px rgba(0, 0, 0, 0.2);
 
 	/* tablet */
 	@media all and (min-width: 480px) and (max-width: 768px) {
+		background-image: url('../assets/images/gfsp.png');
 		min-height: 100px;
-		background-size: cover;
+		min-width: 100%;
 	}
 	/* mobile */
 	@media all and (max-width: 480px) {
 		background-image: url('../assets/images/gfsp_min.png');
 		min-height: 100px;
-		background-size: cover;
+		min-width: 100%;
+	}
+}
+
+#footer {
+	min-height: 100px;
+	max-width: 100%;
+	min-width: 1000px;
+	margin:0px auto;
+	background-repeat: no-repeat;
+	background-color: white;
+	background-position-x: center;
+	.rounded-corners(5px);
+	box-shadow: 10px 0px 6px rgba(0, 0, 0, 0.2);
+
+	/* tablet */
+	@media all and (min-width: 480px) and (max-width: 768px) {
+		min-height: 100px;
+		min-width: 100%;
+	}
+	/* mobile */
+	@media all and (max-width: 480px) {
+		min-height: 100px;
+		min-width: 100%;
 	}
 }
 
@@ -96,7 +125,16 @@ body{
 	display: table;
 	.rounded-corners(10px);
 	background-color: rgba(255,255,255,0.8);
-	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.2);
+	box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
+
+	h3 {
+		font-weight: lighter;
+		font-size: 1.6em;
+		margin: 0px 0px 5px 0px;
+		color: white;
+		background-color: @navy_blue;
+		.rounded-corners-top(10px);
+	}
 
 	.no-link {
 		width:200px;
@@ -126,10 +164,10 @@ body{
 		background-position:top;
 
 		&:hover {
-			.rounded-corners(10px);
-			background-color: rgba(194, 209, 225 , 1);
-			box-shadow: 1px 1px 6px rgba(0, 0, 0, 0.3);
+			text-decoration: underline;
+			font-weight: bold;
 		}
+
 	}
 
 	.training_course {
@@ -160,27 +198,90 @@ body{
 		background-image: url('../assets/images/codex_alimentarius.png');
 	}
 
+	/* PROVIDERS */
+
+	.provider {
+		width:145px;
+		height:50px;
+		padding-top: 110px;
+		float:left;
+		margin: 15px;
+		text-align: center;
+
+		text-decoration: none;
+		color: @navy_blue;
+		background-repeat: no-repeat;
+		background-position:top;
+
+	}
+
 	.fskn {
-		background-image: url('../assets/images/fskn.png');
+		background-image: url('../assets/images/providers/fskn_gray.png');
+
+		&:hover {
+			background-image: url('../assets/images/providers/fskn.png');
+		}
 	}
 
 	.ifpti {
-		background-image: url('../assets/images/ifpti.png');
+		background-image: url('../assets/images/providers/ifpti_gray.png');
+
+		&:hover {
+			background-image: url('../assets/images/providers/ifpti.png');
+		}
 	}
 
 	.ncfpd {
-		background-image: url('../assets/images/ncfpd.png');
+		background-image: url('../assets/images/providers/ncfpd_gray.png');
+
+		&:hover {
+			background-image: url('../assets/images/providers/ncfpd.png');
+		}
 	}
 
+	.gma {
+		background-image: url('../assets/images/providers/gma_gray.jpg');
+		background-position: center;
 
-
-
-
-	h3 {
-		font-weight: lighter;
-		font-style: oblique;
-		font-size: 1.6em;
+		&:hover {
+			background-image: url('../assets/images/providers/gma.jpg');
+		}
 	}
+
+	.ifpri {
+		background-image: url('../assets/images/providers/ifpri_gray.png');
+
+		&:hover {
+			background-image: url('../assets/images/providers/ifpri.png');
+		}
+	}
+
+	.fao {
+		background-image: url('../assets/images/providers/fao_gray.jpg');
+
+		&:hover {
+			background-image: url('../assets/images/providers/fao.jpg');
+		}
+	}
+
+	.fao_stat {
+		background-image: url('../assets/images/providers/fao_stat_gray.jpg');
+		background-position:center center;
+
+		&:hover {
+			background-image: url('../assets/images/providers/fao_stat.jpg');
+		}
+	}
+
+	.twb {
+		background-image: url('../assets/images/providers/twb_gray.jpg');
+		background-position:center center;
+
+		&:hover {
+			background-image: url('../assets/images/providers/twb.jpg');
+		}
+	}
+
 
 }
 
@@ -197,4 +298,19 @@ body{
   -ms-border-radius: @radius;
   -o-border-radius: @radius;
   border-radius: @radius;
+}
+
+/*rounded corners function : 5px is default radius*/
+.rounded-corners-top (@radius: 5px) {
+  -webkit-border-top-right-radius: @radius;
+  -moz-border-top-right-radius: @radius;
+  -ms-border-top-right-radius: @radius;
+  -o-border-top-right-radius: @radius;
+  border-top-right-radius: @radius;
+
+   -webkit-border-top-left-radius: @radius;
+  -moz-border-top-left-radius: @radius;
+  -ms-border-top-left-radius: @radius;
+  -o-border-top-left-radius: @radius;
+  border-top-left-radius: @radius;
 }

@@ -12,7 +12,7 @@
   ],
   "limitPagination": 10,
   "limit_facets": {
-    "set":["aglrfoodsafety", "aglrfaocapacityportal", "optunesco", "aglrfaocdx"]
+    "set":["aglrfoodsafety", "faocapacityportal", "aglrfaocapacityportal", "optunesco", "aglrfaocdx"]
   },
   "limit_facets_number": 100,
   "mappings_file": "../config/facets_mappings.json",
