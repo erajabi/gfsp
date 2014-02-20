@@ -15,8 +15,8 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 	language_mapping['en'] = "English";
 
 	collection_mapping['aglrfoodsafety'] = "Food Safety OER";
-	collection_mapping['faocapacityportal'] = "";
-	collection_mapping['aglrfaocapacityportal'] = "";
+	collection_mapping['faocapacityportal'] = "FAO Capacity Portal";
+	collection_mapping['aglrfaocapacityportal'] = "FAO Capacity Development Portal";
 	collection_mapping['optunesco'] = "Unesco Training Platform";
 	collection_mapping['aglrfaocdx'] = "FAO Codex";
 
@@ -87,7 +87,12 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 				//COVERAGE
 				languageBlock.coverage !== undefined ? $scope.item_coverage = languageBlock.coverage : $scope.item_coverage = '-';
 
+
+
 			}
+
+			//RIGHTS
+			thisJson.rights !== undefined && thisJson.rights.url !== undefined ? $scope.item_rights = thisJson.rights.url : $scope.item_rights = '-';
 
 			//ORGANIZATION
 			thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
@@ -149,9 +154,9 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 
 			//Media Format
 			$scope.item_media_format = '';
-			if(thisJson !== undefined) {
+			if(thisJson.expressions !== undefined && thisJson.expressions.manifestations !== undefined) {
 				//console.error(thisJson);
-				$scope.item_media_format = 'in';
+				$scope.item_media_format = 'media format';
 				/*
 				for(i in thisJson.tokenBlock.contexts) {
 					var temp = thisJson.tokenBlock.contexts[i];
@@ -162,7 +167,7 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 				}
 				*/
 			} else {
-				$scope.item_media_format = 'theo';
+				$scope.item_media_format = '-';
 			}
 
 
