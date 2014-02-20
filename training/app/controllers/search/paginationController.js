@@ -52,7 +52,7 @@ listing.controller("paginationController", function($rootScope, $scope, sharedPr
 
 	/*change page function*/
 	$scope.goToPage = function(pageNum){
-		if(pageNum > 1 && pageNum <= $scope.pages.length){
+		if(pageNum >= 1 && pageNum <= $scope.pages.length){
 			$rootScope.currentPage = pageNum;
 			$scope.findElements(false);
 		}
