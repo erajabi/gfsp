@@ -182,9 +182,9 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 				temp = ",\"listingDescription\":[]";
 				for(j in $scope.listingDescription) {
 					if( j != 0) {
-						temp = temp.split(']')[0] + ",\""+$scope.listingDescription[j]+"\"]";
+						temp = temp.split(']')[0] + ",\""+$scope.listingDescription[j].replace(/"/g, '\\"')+"\"]";
 					} else {
-						temp = temp.split(']')[0] + "\""+$scope.listingDescription[j]+"\"]";
+						temp = temp.split(']')[0] + "\""+$scope.listingDescription[j].replace(/"/g, '\\"')+"\"]";
 					}
 				}
 				equals+= temp;
@@ -217,6 +217,7 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 			temp = '{' + equals + '}';
 
 			//return every snippet as JSON
+			console.log(temp);
 			return JSON.parse($scope.sanitize(temp));
 		}
 		else
