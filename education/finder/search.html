@@ -92,10 +92,10 @@
 
 	            <!-- results -->
 		            	<li class="snippet" ng-repeat="result in filtered = (results | filter:filterResults) ">
-				            <b>Title:</b>{{result.title}}
+				            <b>Title:</b><span class="snippet_title">{{result.title}}</span>
 							<br> <b>Description:</b>
 								<span ng-repeat="desc in result.listingDescription">{{desc}}<br></span>
-							<br> <b>Keywords:</b> <span ng-repeat="keys in result.keywords">{{keys}}, &nbsp;</span>
+							<br> <b>Keywords:</b> <span ng-repeat="keys in result.keywords"><a target="_self" href="search.html?q={{keys}}">{{keys}}</a>, &nbsp;</span>
 							<br> <a class="view_more" target="_self" href="item.html?set={{result.set}}&id={{result.id}}"> View More </a>
 			            </li>
 		            </ul>

@@ -1,8 +1,8 @@
 {
   "contexts": [
     {
-      "human": "Education",
-      "machine": "education"
+      "human": "Continuing Education",
+      "machine": "continuing education"
     },
     {
       "human": "Higher",
@@ -13,36 +13,36 @@
       "machine": "compulsory"
     },
     {
-      "human": "Distance",
-      "machine": "distance"
+      "human": "Distance Education",
+      "machine": "distance education"
     },
     {
-      "human": "Vocational",
-      "machine": "vocational"
+      "human": "Vocational Education",
+      "machine": "vocational education"
     },
     {
-      "human": "Professional",
-      "machine": "professional"
+      "human": "Higher Education",
+      "machine": "higher education"
     },
     {
-      "human": "Development",
-      "machine": "development"
+      "human": "Professional Development",
+      "machine": "professional development"
     },
     {
-      "human": "Continuing",
-      "machine": "continuing"
+      "human": "Policy Making",
+      "machine": "policy making"
     },
     {
-      "human": "Policy",
-      "machine": "policy"
+      "human": "Compulsory Education",
+      "machine": "compulsory education"
     },
     {
-      "human": "Making",
-      "machine": "making"
+      "human": "Educational Administration",
+      "machine": "educational administration"
     },
     {
-      "human": "Library",
-      "machine": "library"
+      "human": "Councelor",
+      "machine": "councellor"
     }
   ],
   "endUserRoles": [
@@ -67,8 +67,12 @@
       "machine": "teacher"
     },
     {
-      "human": "Councelor",
-      "machine": "councelor"
+      "human": "Policy Makers",
+      "machine": "policy makers"
+    },
+    {
+      "human": "Counsellor",
+      "machine": "counsellor"
     }
   ],
   "facets": [
