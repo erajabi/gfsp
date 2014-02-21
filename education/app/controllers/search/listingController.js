@@ -123,7 +123,6 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 				$scope.inactiveFacets.length = 0;/*clear results*/
 				$scope.inactiveFacets.push(data.facets);
 			}
-			console.log($scope.inactiveFacets);
 
 
 			//Print snippets
@@ -217,7 +216,6 @@ listing.controller("listingController", function($rootScope, $scope, $http, $loc
 			temp = '{' + equals + '}';
 
 			//return every snippet as JSON
-			console.log(temp);
 			return JSON.parse($scope.sanitize(temp));
 		}
 		else
