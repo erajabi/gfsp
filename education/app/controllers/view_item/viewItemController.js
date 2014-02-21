@@ -196,8 +196,13 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			}
 
 			if(thisJson.expressions[0].manifestations[0].items[0].url!=undefined) {
-				$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].url;
-
+				//IF url DOESN'T contains the 'http://' we add it
+				if( thisJson.expressions[0].manifestations[0].items[0].url.indexOf('http://') < 0 ){
+					$scope.item_resource_url = 'http://' + thisJson.expressions[0].manifestations[0].items[0].url;
+				}
+				else {
+					$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].url;
+				}
 			}
 
 		})

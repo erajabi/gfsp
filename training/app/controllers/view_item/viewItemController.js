@@ -99,7 +99,7 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 				for(i in thisJson.tokenBlock.endUserRoles) {
 					var temp = audience_mapping[thisJson.tokenBlock.endUserRoles[i]];
 					if( i != thisJson.tokenBlock.endUserRoles.length-1 ) {
-						temp += ',';	
+						temp += ',';
 					}
 
 					$scope.item_roles.push(temp);
@@ -124,7 +124,7 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 
 					// commas
 					i != thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology'].length-1 ? temp += ', ' : temp += '';
-					
+
 					$scope.item_classification.push(temp);
 				}
 			} else {
@@ -132,8 +132,13 @@ listing.controller("viewItemController", function($scope, $http, $location) {
 			}
 
 			if(thisJson.expressions[0].manifestations[0].items[0].url!=undefined) {
-				$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].url;
-
+				//IF url DOESN'T contains the 'http://' we add it
+				if( thisJson.expressions[0].manifestations[0].items[0].url.indexOf('http://') < 0 ){
+					$scope.item_resource_url = 'http://' + thisJson.expressions[0].manifestations[0].items[0].url;
+				}
+				else {
+					$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].url;
+				}
 			}
 
 		})
