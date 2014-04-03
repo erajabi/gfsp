@@ -119,35 +119,15 @@ body{
 #main_content {
 
 	display:table;
-	margin:0px auto 20px auto;
+	margin:20px auto;
 	padding:1em 0;
+	max-width: 1015px;
+	float:none;
 
-	/* screen */
-	@media all {
-		width:1010px;
-	}
-
-	/* tablet */
-	@media all and (min-width: 480px) and (max-width: 768px) {
-		width:95%;
-		font-size: medium;
-		padding:4px;
-
-	}
-
-	/* mobile */
-	@media all and (max-width: 480px) {
-		width:95%;
-		font-size: medium;
-		padding:4px;
-	}
 }
 
 .landing_links{
 
-	width: 700px;
-	margin: 10px auto;
-	text-align: center;
 	display: table;
 	.rounded-corners(10px);
 	background-color: rgba(255,255,255,0.8);
@@ -162,48 +142,10 @@ body{
 		.rounded-corners-top(10px);
 	}
 
-	.no_link_4 {
-		width:140px;
+	.link {
 		height:50px;
 		padding-top: 110px;
-		float:left;
-		margin: 15px;
-		text-align: center;
-
-		text-decoration: none;
-		color: @navy_blue;
-		background-repeat: no-repeat;
-		background-position:top;
-
-		&:hover {
-			text-decoration: none;
-		}
-	}
-
-	.link_3 {
-		width:200px;
-		height:50px;
-		padding-top: 110px;
-		float:left;
-		margin: 15px;
-		text-align: center;
-
-		text-decoration: none;
-		color: @navy_blue;
-		background-repeat: no-repeat;
-		background-position:top;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
-
-	.link_4 {
-		width:140px;
-		height:50px;
-		padding-top: 110px;
-		float:left;
-		margin: 15px;
+		margin: 15px 0px;
 		text-align: center;
 
 		text-decoration: none;
@@ -245,13 +187,11 @@ body{
 	}
 
 	/* PROVIDERS */
-
 	.provider {
-		width:145px;
 		height:50px;
 		padding-top: 110px;
 		float:left;
-		margin: 15px;
+		margin: 15px 0px;
 		text-align: center;
 
 		text-decoration: none;

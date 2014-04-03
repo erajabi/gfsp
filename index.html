@@ -1,62 +1,50 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title> GFSP </title>
+	<title> ^ Agro Know</title>
 	<!-- INCLUDE REQUIRED THIRD PARTY LIBRARY JAVASCRIPT AND CSS -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<!-- define the base url -->
+	<base href="/Users/higher2fly/Agro-Know/projects_UX/gfsp/">
+
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
 	<link rel="stylesheet/less" type="text/css" href="css/style.less" />
+	<link rel="stylesheet/less" type="text/css" href="css/style_2.less" />
+
 
 </head>
 
-<body>
-		<!-- Header -->
-		<div id="header"></div>
+<body >
 
-		<!-- Main div that contains the listing, the facets, the search field.
-			the pagination and the informative messages. -->
-        <div id="main_content">
-			<!--
-				<form ng-submit="submit()" class="form-wrapper cf">
-		        <input ng-model="search_query" name="search_query" type="text" placeholder="Search here..." required>
-		        <button type="submit">Search</button>
-		    </form>
-			-->
+	<div id="header">
+	</div>
 
-			<div class="landing_links">
-				<h3> Resource Types </h3>
-				<a href="training/finder/search.html" class="link_4 training_course">Training Courses</a>
-				<a href="education/finder/search.html" class="link_4 open_educational">Open Educational Resources</a>
-				<a href="stats.html"  class="link_4 stats"> Statistics & Indexes </a>
-				<a class="no_link_4 publications"> Publications </a>
-			</div>
-			<div class="landing_links">
-				<h3> Research Themes </h3>
-				<a href="education/finder/search.html?q=food security&set=aglrfoodsafety,aglrfaocapacityportal,optunesco" class="link_3 food_security">Food Security</a>
-				<a href="education/finder/search.html?q=foodborne&set=aglrfoodsafety,aglrfaocapacityportal,aglrfaocdx" class="link_3 foodborne">Foodborne diseases</a>
-				<a href="education/finder/search.html?q=Codex Alimentarius&set=aglrfaocdx" class="link_3 codex">Codex Alimentarius</a>
-			</div>
-			<div class="landing_links">
-				<h3> Featured Content Providers </h3>
-				<a href="http://foodsafetyknowledgenetwork.org/" class="provider fskn">FSKN</a>
-				<a href="http://www.ifpti.org/home" class="provider ifpti">IFPTI</a>
-				<a href="http://www.ncfpd.umn.edu/" class="provider ncfpd">NCFPD</a>
-				<a href="http://www.gmaonline.org/" class="provider gma" target="_blank" >GMA</a>
-				<a href="http://www.ifpri.org/" class="provider ifpri" target="_blank">IFPRI</a>
-				<a href="http://www.fao.org/home/en/" class="provider fao" target="_blank">FAO</a>
-				<a href="http://faostat3.fao.org/faostat-gateway/go/to/home/E" class="provider fao_stat" target="_blank">FAO-STAT</a>
-				<a href="http://www.worldbank.org/" class="provider twb" target="_blank">TWB</a>
-			</div>
-
-
-
+		<div id="akListing" ng-app="akListing" ng-cloak>
+	        <div ng-view class="col-md-12">
+	        </div>
 		</div>
 
-		<!-- Footer -->
-		<div id="footer"></div>
+	<footer>
+		<p>Powered by Agro-Know</p>
+	</footer>
 
 <!-- INCLUDE APPLICATION SPECIFIC CSS AND JAVASCRIPT -->
-<script src="js/less-1.5.0.min.js" type="text/javascript"></script>
+
+<!-- angular -->
+<script type="text/javascript" src="lib/angular.min.js"></script>
+<script type="text/javascript" src="lib/angular-route.min.js"></script>
+<script type="text/javascript" src="lib/ui-bootstrap-0.10.0.min.js"></script>
+<!-- less -->
+<script src="lib/less-1.5.0.min.js" type="text/javascript"></script>
+<!-- app & controllers -->
+<script type="text/javascript" src="app/app.js"></script>
+<script type="text/javascript" src="app/controllers/mainController.js"></script>
+<script type="text/javascript" src="app/controllers/search/listingController.js"></script>
+<script type="text/javascript" src="app/controllers/search/paginationController.js"></script>
+<script type="text/javascript" src="app/controllers/search/facetsController.js"></script>
+<script type="text/javascript" src="app/controllers/view_item/viewItemController.js"></script>
+
 </body>
 </html>
