@@ -15,9 +15,6 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		//enable error message : true/false
 		$scope.error = false;
 
-		//TESTING
-		console.log('taraam: ', $location.search(), $routeParams );
-
 		//If query defined in URL
 		if($routeParams.q){
 			$rootScope.query = 'q='+$routeParams.q;
@@ -110,7 +107,6 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		* limitFacetsNumber : '&limitFacetsNumber'
 		*/
 		var query = $scope.api_path + $scope.schema + '?' + $rootScope.query + query_facets + query_active_facets + query_pagination + limitFacets + limitFacetsNumber;
-		console.log(query);
 
 
 		//add parameters to URL
