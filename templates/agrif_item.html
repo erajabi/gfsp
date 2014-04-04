@@ -1,4 +1,4 @@
-<a href="javascript:history.back();" > <h3> &lt; Back to search</h3> </a>
+<a href="/home" > Home Page</a> <a href="javascript:history.back();" > &lt; Back to search </a>
 
 <!-- VIEW ITEM -->
 <hr>
@@ -13,10 +13,10 @@
         <ul>
 			 <li><span class="labels">Description : </span> <br> {{item_description}}</li>
 			 <li><span class="labels">Keywords : </span> <br>
-			 	<a ng-repeat="keys in item_keywords" target="_self" href="search?query={{keys}}" >{{keys}}, </a>
+			 	<a ng-repeat="keys in item_keywords" href="publications/search/?query={{keys}}" >{{keys}}, </a>
 			 </li>
 			 <li><span class="labels">Classification : </span> <br>
-				 <a ng-repeat="keys in item_classification" target="_self" href="search?query={{keys}}" >{{keys}}, </a>
+				 <a ng-repeat="keys in item_classification" href="publications/search/?query={{keys}}" >{{keys}}, </a>
 			 </li>
 		 </ul>
 
