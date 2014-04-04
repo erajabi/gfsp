@@ -21,7 +21,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	$http.get($scope.conf_file)
 	.success(function(data) {
 	/*-----------------------------------FINDER SETTINGS FROM CONFIG FILE-----------------------------------*/
-		$scope.limit_facets = data.limit_facets;
+		//$scope.limit_facets = data.limit_facets;
 		$scope.api_path = data.baseUrl;
 		$scope.enablePaginationTop = data.enablePaginationTop;
 		$scope.enablePaginationBottom = data.enablePaginationBottom;
@@ -79,15 +79,6 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		$scope.maxTextLength = 500;
 
 	});
-	//----ADD SOME AWESOMENESS ;)----//
-
-	//!! *INFINITE SCROLL* TO BE ADDED !!
-	// Enables infinite scroll : true/false
-	// Will work in combination with pagination:false.
-	//$scope.enableInfiniteScroll = false;
-
-	//---- KEEP CALM AND IMPLEMENT FUNCTIONALITY FIRST! ----//
-
 
 
 	/*-----------------------------------VARIOUS VARIABLES in the scope-----------------------------------*/
@@ -120,12 +111,18 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		switch(facets_type) {
 			case 'training' :
 				$scope.facets = ['organization','languageBlocks.en.coverage','language', 'endUserRoles'];
+				$scope.limit_facets = {"set":["aglrgfsp"]};
+				mappings_file = 'config/training_facets_mappings.json';
 				break;
 			case 'educational' :
 				$scope.facets = ['set','learningResourceTypes','contexts','endUserRoles','language'];
+				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeintute","oeorganiceprints","aglrfskn","aglrgfsp"]};
+				mappings_file = 'config/educational_facets_mappings.json';
 				break;
 			case 'publications' :
 				$scope.facets = ['expressions.citation.title','citationNumber','language','citationChronology','controlled.classification.CCL'];
+				//$scope.limit_facets = data.limit_facets;
+				mappings_file = 'config/publications_facets_mappings.json';
 				break;
 			default:
 			    $scope.facets = ['set','language','contexts'];
