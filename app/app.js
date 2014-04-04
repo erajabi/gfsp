@@ -37,48 +37,62 @@ listing.service('sharedProperties',
 listing.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
+			// - (AKIF)
 			//training
 			when('/training/search/', {
-				templateUrl: 'ui/akif_train_search.html',
+				templateUrl: 'templates/akif_train_search.html',
 				controller: 'listingController'
 			}).
 			when('/training/search/:search_param', {
-				templateUrl: 'ui/akif_train_search.html',
+				templateUrl: 'templates/akif_train_search.html',
 				controller: 'listingController'
 			}).
 			//educational resources
 			when('/educational/search/', {
-				templateUrl: 'ui/akif_edu_search.html',
+				templateUrl: 'templates/akif_edu_search.html',
 				controller: 'listingController'
 			}).
 			when('/educational/search/:search_param', {
-				templateUrl: 'ui/akif_edu_search.html',
+				templateUrl: 'templates/akif_edu_search.html',
 				controller: 'listingController'
 			}).
-			//research publications
-			when('/publications/search/', {
-				templateUrl: 'ui/agrif_search.html',
-				controller: 'listingController'
-			}).
-			when('/publications/search/:search_param', {
-				templateUrl: 'ui/agrif_search.html',
-				controller: 'listingController'
-			}).
-			//general
-			when('/search', {
-				templateUrl: 'ui/search.html',
-				controller: 'listingController'
-			}).
+			//view-item
 			when('/item', {
-				templateUrl: 'ui/item.html',
+				templateUrl: 'templates/akif_item.html',
 				controller: 'viewItemController'
 			}).
 			when('/item/:itemId', {
-				templateUrl: 'ui/item.html',
+				templateUrl: 'templates/akif_item.html',
 				controller: 'viewItemController'
 			}).
+
+
+			// - (AGRIF)
+			//research publications
+			when('/publications/search/', {
+				templateUrl: 'templates/agrif_search.html',
+				controller: 'listingController'
+			}).
+			when('/publications/search/:search_param', {
+				templateUrl: 'templates/agrif_search.html',
+				controller: 'listingController'
+			}).
+			when('/publication-item', {
+				templateUrl: 'templates/agrif_item.html',
+				controller: 'agris-viewItemController'
+			}).
+			when('/publication-item/:itemId', {
+				templateUrl: 'templates/agrif_item.html',
+				controller: 'agris-viewItemController'
+			}).
+
+			//general
+			when('/search', {
+				templateUrl: 'templates/search.html',
+				controller: 'listingController'
+			}).
 			when('/', {
-				templateUrl: 'ui/main.html',
+				templateUrl: 'templates/main.html',
 				controller: 'mainController'
 			}).
 			otherwise({

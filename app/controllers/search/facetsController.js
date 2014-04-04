@@ -1,10 +1,4 @@
-listing.controller("facetsController", function($rootScope, $scope, $http, $location, sharedProperties){
-
-$scope.initFacets = function() {
-	console.log('motha fucka', $scope.facets);
-	$scope.facets = ['organization','languageBlocks.en.coverage','language', 'endUserRoles'];
-}
-
+listing.controller("facetsController", function($rootScope, $scope, $routeParams, $http, $location, sharedProperties){
 
 // selectFacet() function
 //@param term : the term we selected
@@ -45,8 +39,8 @@ $scope.deselectFacet = function(facet)
 	    $scope.activeFacets.splice(index, 1);
 	}
 
-	if($location.search()[facet.facet]) {
-		$location.search(facet.facet,null);
+	if($routeParams[facet.facet]) {
+		$routeParams(facet.facet,null);
 	}
     $scope.findElements(false);
 }

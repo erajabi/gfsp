@@ -15,10 +15,15 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		//enable error message : true/false
 		$scope.error = false;
 
+		//TESTING
+		console.log('taraam: ', $location.search(), $routeParams );
+
 		//If query defined in URL
-		if($routeParams.search_param){
-			$rootScope.query = 'q='+$routeParams.search_param;
+		if($routeParams.q){
+			$rootScope.query = 'q='+$routeParams.q;
 		}
+
+
 
 		//Search '*' @ initial search
 		if(init){
@@ -30,8 +35,9 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 			var flg = true; //needed for clearing the activeFacets at first time
 			//-check url
 			for(i in $scope.facets) {
-		    	if($scope.facets[i] in $location.search()) {
-					var terms = $location.search()[$scope.facets[i].toString()].split(',');
+
+		    	if($scope.facets[i] in $routeParams) {
+					var terms = $routeParams[$scope.facets[i].toString()].split(',');
 					//separate different terms of same facet
 					for(j in terms) {
 						var facet = { 'facet' : $scope.facets[i].toString() , 'term' : terms[j]} ;
@@ -41,8 +47,6 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		    	}
 			}
 		}
-
-		console.log($location.search);
 
 		//If there are facets defined in settings add them in query
 		var query_facets = '';
@@ -108,12 +112,13 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		var query = $scope.api_path + $scope.schema + '?' + $rootScope.query + query_facets + query_active_facets + query_pagination + limitFacets + limitFacetsNumber;
 		console.log(query);
 
+
 		//add parameters to URL
 		//active facets
 		var activeFacetSplit = query_active_facets.split('&');
 		for(tempfacet in activeFacetSplit){
 			if(tempfacet!=0){
-				$location.search(activeFacetSplit[tempfacet].split('=')[0],activeFacetSplit[tempfacet].split('=')[1]);
+/* 				$location.search(activeFacetSplit[tempfacet].split('=')[0],activeFacetSplit[tempfacet].split('=')[1]); */
 			}
 		}
 

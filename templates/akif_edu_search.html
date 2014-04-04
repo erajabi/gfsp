@@ -1,13 +1,12 @@
-<div ng-controller="mainController" ng-init="init_finder('akif','training')" >
+<div ng-controller="mainController" ng-init="init_finder('akif','educational')" >
 	<a href="javascript:history.back();">HOME PAGE</a>
-
 	<form ng-submit="submit()" class="form-wrapper cf">
 		        <input ng-model="search_query" name="search_query" type="text" placeholder="Search here..." >
 		        <button type="submit">Search</button>
 		    </form>
 
 	<!-- FACETS MOBILE -->
-	<div id="facets" class="col-xs-12 hidden-sm hidden-md hidden-lg" ng-show="enableFacets" ng-controller="facetsController" >
+	<div id="facets" class="col-xs-12 hidden-sm hidden-md hidden-lg" ng-show="enableFacets" ng-controller="facetsController">
             	<!-- active facets -->
             	<div class="facet_title">Available facets</div>
 	              <div ng-repeat="facet in facets" style="float:left; margin:0 2px;">
@@ -24,16 +23,16 @@
 		          </div>
 			</div>
 
-	<!-- FACETS normal (left sidebar)-->
+	<!-- FACETS > mobile (left sidebar)-->
 	<div class="hidden-xs col-sm-3 col-md-3">
 				<!-- <a ng-click="enableFacets=!enableFacets">Facets</a> -->
-	            <div id="facets" ng-controller="facetsController" >
+	            <div id="facets" ng-controller="facetsController">
 
             	<!-- active facets -->
             	<div class="facet_title">Available facets</div>
 				<!-- bootstrap -->
 	             <accordion >
-				    <accordion-group ng-repeat="facet in facets" heading="{{mapping['facets'][facet] || facet}}" >
+				    <accordion-group heading="{{mapping['facets'][facet] || facet}}" ng-repeat="facet in facets">
 						<!-- 'facet' is the actual facet name and term.term is the machine name for the term -->
 		            	<a ng-repeat="term in inactiveFacets[0][facet.toString()].terms | filter:facetFilter" class="child" href="javascript:;" ng-click="selectFacet(term.term, facet, term.count)" >
 		            		<span class="value">{{ mapping[facet][term.term] || term.term }}</span>
@@ -92,7 +91,7 @@
 						<span style="font-style:oblique; font-size:1.3em;">{{result.title}}</span>
 						<br> {{result.description}}
 						<br> <b><span class="hidden-xs">Keywords:</span></b>
-							 <a ng-repeat="keys in result.keywords" href="search?q={{keys}}" >{{keys}}, </a>
+							 <a ng-repeat="keys in result.keywords" href="educational/search/?q={{keys}}" >{{keys}}, </a>
 						<br>
 						 <a class="btn btn-sm btn-default" href="item/{{result.id}}_{{result.set}}"> View More </a>
 						<!--  <a class="btn btn-sm btn-default" target="_self" href="item_translations.html?id={{result.id}}_{{result.set}}"> View Translations </a> -->
