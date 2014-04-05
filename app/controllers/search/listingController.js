@@ -112,8 +112,9 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		//add parameters to URL
 		//active facets
 		var activeFacetSplit = query_active_facets.split('&');
-		for(tempfacet in activeFacetSplit){
+		for(tempfacet in $routeParams){
 			if(tempfacet!=0){
+				console.log(tempfacet);
 /* 				$location.search(activeFacetSplit[tempfacet].split('=')[0],activeFacetSplit[tempfacet].split('=')[1]); */
 			}
 		}

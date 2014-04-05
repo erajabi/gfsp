@@ -120,7 +120,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 				mappings_file = 'config/educational_facets_mappings.json';
 				break;
 			case 'publications' :
-				$scope.facets = ['expressions.citation.title','citationNumber','language','citationChronology','controlled.classification.CCL'];
+				$scope.facets = ['language', 'controlled.type', 'controlled.classification.CCL', 'publisher.date'];
 				//$scope.limit_facets = data.limit_facets;
 				mappings_file = 'config/publications_facets_mappings.json';
 				break;

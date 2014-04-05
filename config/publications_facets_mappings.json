@@ -79,12 +79,12 @@
       "machine": "expressions.citation.title"
     },
     {
-      "human": "Issue Number",
-      "machine": "citationNumber"
+      "human": "Publishing Date",
+      "machine": "publisher.date"
     },
     {
-      "human": "Publisher Year",
-      "machine": "citationChronology"
+      "human": "Type",
+      "machine": "controlled.type"
     },
     {
       "human": "Classification",
@@ -155,6 +155,10 @@
     {
       "human": "German",
       "machine": "de"
+    },
+    {
+      "human": "Chinese",
+      "machine": "cn"
     },
     {
       "human": "German",
