@@ -1,5 +1,5 @@
 <div ng-controller="mainController" ng-init="init_finder('akif','educational')" >
-	<a href="home" > Home Page</a>
+	<a href="#/" > Home Page</a>
 	<form ng-submit="submit()" class="form-wrapper cf">
 		        <input ng-model="search_query" name="search_query" type="text" placeholder="Search here..." >
 		        <button type="submit">Search</button>
@@ -91,9 +91,9 @@
 						<span style="font-style:oblique; font-size:1.3em;">{{result.title}}</span>
 						<br> {{result.description}}
 						<br> <b><span class="hidden-xs">Keywords:</span></b>
-							 <a ng-repeat="keys in result.keywords" href="educational/search/?q={{keys}}" >{{keys}}, </a>
+							 <a ng-repeat="keys in result.keywords" href="#/educational/search/?q={{keys}}" >{{keys}}, </a>
 						<br>
-						 <a class="btn btn-sm btn-default" href="item/{{result.id}}_{{result.set}}"> View More </a>
+						 <a class="btn btn-sm btn-default" href="#/item/{{result.id}}_{{result.set}}"> View More </a>
 						<!--  <a class="btn btn-sm btn-default" target="_self" href="item_translations.html?id={{result.id}}_{{result.set}}"> View Translations </a> -->
 					</li>
 

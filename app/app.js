@@ -93,10 +93,6 @@ listing.config(['$routeProvider',
 				templateUrl: 'templates/search.html',
 				controller: 'listingController'
 			}).
-			when('/home', {
-				templateUrl: 'templates/main.html',
-				controller: 'mainController'
-			}).
 			when('/', {
 				templateUrl: 'templates/main.html',
 				controller: 'mainController'
