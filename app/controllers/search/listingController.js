@@ -1,4 +1,4 @@
-listing.controller("listingController", function($rootScope, $routeParams, $scope, $http, $location, sharedProperties){
+ listing.controller("listingController", function($rootScope, $routeParams, $scope, $http, $location, sharedProperties){
 
 	/* variable to calculate the progress of http get request */
 	$scope.http_get_prog = 37;
@@ -214,6 +214,8 @@ listing.controller("listingController", function($rootScope, $routeParams, $scop
 		var temp = "";
 		var keys = [];
 		for(var k in thisJson.languageBlocks) keys.push(k);
+
+		console.log(thisJson);
 
 		if(thisJson.languageBlocks[$scope.selectedLanguage]!=undefined && thisJson.languageBlocks[$scope.selectedLanguage].title!=undefined)
 		{

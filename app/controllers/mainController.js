@@ -39,7 +39,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		$scope.selectedLanguage = data.selectedLanguage;
 		$scope.enableFacets = data.enableFacets;
 		/* 		$scope.facets = data.facets; */
-		$scope.snippetElements = data.snippetElements;
+		/* $scope.snippetElements = data.snippetElements; */
 		$scope.maxTextLength = data.maxTextLength;
 		$scope.limit_facets_number = data.limit_facets_number;
 		$scope.findElements(true);
@@ -123,6 +123,17 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 				$scope.facets = ['language', 'controlled.type', 'controlled.classification.CCL', 'publisher.date'];
 				//$scope.limit_facets = data.limit_facets;
 				mappings_file = 'config/publications_facets_mappings.json';
+				break;
+			default:
+			    $scope.facets = ['set','language','contexts'];
+		}
+
+		switch(schema) {
+			case 'akif' :
+				$scope.snippetElements = [ "title", "description", "keywords" ]
+				break;
+			case 'agrif' :
+				$scope.snippetElements = [ "title", "abstract", "keywords" ]
 				break;
 			default:
 			    $scope.facets = ['set','language','contexts'];

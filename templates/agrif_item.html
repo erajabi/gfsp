@@ -1,8 +1,8 @@
-<a href="home" > Home Page</a> <a href="javascript:history.back();" > &lt; Back to search </a>
+<a href="home" > Home Page</a> <a href="javascript:history.back();" > | Back to search </a>
 
 <!-- VIEW ITEM -->
 <hr>
-<div ng-controller="agris-viewItemController" ng-init="getItem()">
+<div id="view_item" ng-controller="agris-viewItemController" ng-init="getItem()">
 <form class="form-wrapper cf" action="search">
     <input name="q" type="text" placeholder="Search here..." required>
     <button type="submit">Search</button>
@@ -15,7 +15,7 @@
 			 <li><span class="labels">Citation : </span> <br> {{item_citation}} </li>
 			 <li><span class="labels">Language : </span> <br> {{item_language}}</li>
 			 <li><span class="labels">Keywords : </span> <br>
-			 	<a ng-repeat="keys in item_keywords" target="_self" href="publications/search/?q={{keys}}" >{{keys}}, </a>
+			 	<a ng-repeat="keys in item_keywords" href="#/publications/search/?q={{keys}}" >{{keys}}, </a>
 			 </li>
 		 </ul>
 

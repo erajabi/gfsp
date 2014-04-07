@@ -1,8 +1,8 @@
-<a href="home" > Home Page</a> <a href="javascript:history.back();" > &lt; Back to search </a>
+<a href="#/" > Home Page</a> <a href="javascript:history.back();" > | Back to search </a>
 
 <!-- VIEW ITEM -->
 <hr>
-<div ng-controller="viewItemController" ng-init="getItem()">
+<div id="view_item" ng-controller="viewItemController" ng-init="getItem()">
 <form class="form-wrapper cf" action="educational/search/">
     <input name="q" type="text" placeholder="Search here..." required>
     <button type="submit">Search</button>
@@ -13,10 +13,10 @@
         <ul>
 			 <li><span class="labels">Description : </span> <br> {{item_description}}</li>
 			 <li><span class="labels">Keywords : </span> <br>
-			 	<a ng-repeat="keys in item_keywords" href="educational/search/?query={{keys}}" >{{keys}}, </a>
+			 	<a ng-repeat="keys in item_keywords" href="#/educational/search/?q={{keys}}" >{{keys}}, </a>
 			 </li>
 			 <li><span class="labels">Classification : </span> <br>
-				 <a ng-repeat="keys in item_classification"  href="educational/search/?query={{keys}}" >{{keys}}, </a>
+				 <a ng-repeat="keys in item_classification"  href="#/educational/search/?q={{keys}}" >{{keys}}, </a>
 			 </li>
 		 </ul>
 

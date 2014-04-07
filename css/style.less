@@ -197,7 +197,10 @@ footer {
 	}
 
 	.incident {
-		background-image: url('../assets/images/incident.png');
+		background-image: url('../assets/images/incident_inactive.png');
+		&:hover {
+			text-decoration: none;
+		}
 	}
 
 	.haccp {
@@ -205,7 +208,11 @@ footer {
 	}
 
 	.publications {
-		background-image: url('../assets/images/publications.png');
+		background-image: url('../assets/images/publications_inactive.png');
+
+		&:hover {
+			text-decoration: none;
+		}
 	}
 
 	.stats {
@@ -240,20 +247,13 @@ footer {
 	}
 
 	.fskn {
-		background-image: url('../assets/images/providers/fskn_gray.png');
+		background-image: url('../assets/images/providers/fskn.png');
 
-		&:hover {
-			background-image: url('../assets/images/providers/fskn.png');
-		}
 	}
 
 	.jifsan {
-		background-image: url('../assets/images/providers/jifsan_gray.png');
+		background-image: url('../assets/images/providers/jifsan.png');
 		background-position:center center;
-
-		&:hover {
-			background-image: url('../assets/images/providers/jifsan.png');
-		}
 	}
 
 	.ifpti {
@@ -290,11 +290,8 @@ footer {
 	}
 
 	.fao {
-		background-image: url('../assets/images/providers/fao_gray.jpg');
+		background-image: url('../assets/images/providers/fao.jpg');
 
-		&:hover {
-			background-image: url('../assets/images/providers/fao.jpg');
-		}
 	}
 
 	.fao_stat {
