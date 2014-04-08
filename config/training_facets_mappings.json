@@ -305,6 +305,10 @@
       "machine": "twi"
     },
     {
+      "human": "Taiwan",
+      "machine": "tw"
+    },
+    {
       "human": "Arabic",
       "machine": "ar"
     },
