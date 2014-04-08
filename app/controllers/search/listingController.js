@@ -7,7 +7,7 @@
 	* creates the request for Search API and makes the call
 	* @param init : true if function called in initialization.
 	*/
-	$rootScope.findElements = function(init)
+	$rootScope.findElements = function(init, pagination_type)
 	{
 		console.log('find_elements');
 		//enable loading indicator : true/false
@@ -119,7 +119,13 @@
 			}
 		}
 
-		$scope.searchMore(query);
+		// CHECK IF USER called the loading more or the classic pagination
+		if ( pagination_type == 'classic') {
+			$scope.search(query);
+		} else {
+			$scope.searchMore(query);
+		}
+
 
 	}
 

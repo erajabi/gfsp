@@ -6,8 +6,15 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 	<!-- define the base url -->
-<!-- 	<base href="/Users/higher2fly/Agro-Know/projects_UX/gfsp/"> -->
-	<base href="http://greenlearningnetwork.com/gfsp/">
+	<!-- 	<base href="/Users/higher2fly/Agro-Know/projects_UX/gfsp/"> -->
+	<!-- 	<base href="greenlearningnetwork.com/gfsp/"> -->
+
+	<!-- get base url dynamically to avoid collisions between 'www.domain...' and 'domain...' -->
+	<script>
+      document.write('<base href="' + document.location + '" />');
+	</script>
+
+	<script type="text/javascript" src="https://agroknow.atlassian.net/s/d41d8cd98f00b204e9800998ecf8427e/en_US-8bdlft-1988229788/6318/8/1.4.10/_/download/batch/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector/com.atlassian.jira.collector.plugin.jira-issue-collector-plugin:issuecollector.js?collectorId=26e040af"></script>
 
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,700,300' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
@@ -16,12 +23,12 @@
 
 </head>
 
-<body >
+<body ng-app="akListing" ng-cloak>
 
 	<div id="header">
 	</div>
 
-		<div id="akListing" ng-app="akListing" ng-cloak>
+		<div id="akListing" >
 	        <div ng-view class="col-md-12">
 	        </div>
 		</div>

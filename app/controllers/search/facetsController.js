@@ -26,7 +26,7 @@ $scope.selectFacet = function(term, parent, count)
 	}
 
 	$rootScope.currentPage = 1;
-    $scope.findElements(false);
+    $scope.findElements( false, 'classic' );
     $scope.update();
 
 }
@@ -40,9 +40,11 @@ $scope.deselectFacet = function(facet)
 	}
 
 	if($routeParams[facet.facet]) {
-		$routeParams(facet.facet,null);
+		$routeParams[facet.facet] = $routeParams[facet.facet].replace( facet.term + ',' ,'' ).replace( ',' + facet.term, '');
 	}
-    $scope.findElements(false);
+
+
+    $scope.findElements( false, 'classic' );
 }
 
 

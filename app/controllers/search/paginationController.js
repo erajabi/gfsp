@@ -53,7 +53,7 @@ listing.controller("paginationController", function($rootScope, $scope, sharedPr
 	$scope.goToPage = function(pageNum){
 		if(pageNum >= 1 && pageNum <= $scope.pages.length){
 			$rootScope.currentPage = pageNum;
-			$scope.findElements(false);
+			$scope.findElements(false, 'classic'); //calls the search but replaces existed elements in listing
 		}
 	};
 
@@ -61,7 +61,7 @@ listing.controller("paginationController", function($rootScope, $scope, sharedPr
 	$scope.loadMore = function(pageNum) {
 		console.log(pageNum);
 		$rootScope.currentPage = pageNum;
-	    $scope.findElements(false);
+	    $scope.findElements(false, 'mobile'); //calls the search and appends elements in listing
 	}
 
 });

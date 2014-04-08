@@ -89,10 +89,6 @@ listing.config(['$routeProvider',
 			}).
 
 			//general
-			when('/search', {
-				templateUrl: 'templates/search.html',
-				controller: 'listingController'
-			}).
 			when('/', {
 				templateUrl: 'templates/main.html',
 				controller: 'mainController'
