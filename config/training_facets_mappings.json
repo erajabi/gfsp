@@ -129,6 +129,22 @@
       "machine": "n/a"
     },
     {
+      "human": "Welsh",
+      "machine": "cy"
+    },
+    {
+      "human": "Danish",
+      "machine": "da"
+    },
+    {
+      "human": "Japanese",
+      "machine": "ja"
+    },
+    {
+      "human": "Taiwan",
+      "machine": "tw"
+    },
+    {
       "human": "Croatian",
       "machine": "hr"
     },
@@ -333,6 +349,10 @@
     {
       "human": "Green OER",
       "machine": "greenoer"
+    },
+    {
+      "human": "GFSP secretariat",
+      "machine": "aglrgfsp"
     },
     {
       "human": "Digital Green",

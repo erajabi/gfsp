@@ -5,7 +5,7 @@
 */
 
 /*Define mainController controller in 'app' */
-listing.controller("mainController", function($rootScope, $scope, $http, $location, $modal, $log, sharedProperties){
+listing.controller("mainController", function($rootScope, $scope, $http, $routeParams, $location, $modal, $log, sharedProperties){
 
 	$scope.conf_file = 'config/conf.json';
 	var mappings_file = 'config/facets_mappings.json';
@@ -160,10 +160,15 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	};
 
 	//Function for query submission
-	$scope.submit = function() {
+	//type : educational, publications, training
+	$scope.submit = function(type) {
 		if (this.search_query) {
 		  $rootScope.query = "q=" + this.search_query;
+		  $routeParams.q = this.search_query;
+
+		  if(type){ $location.path( type+'/search/' ); }
 		  $location.search('q',this.search_query);
+
 		  this.search_query = '';
 
 		  $rootScope.currentPage = 1;

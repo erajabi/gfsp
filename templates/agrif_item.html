@@ -3,8 +3,8 @@
 <!-- VIEW ITEM -->
 <hr>
 <div id="view_item" ng-controller="agris-viewItemController" ng-init="getItem()">
-<form class="form-wrapper cf" action="search">
-    <input name="q" type="text" placeholder="Search here..." required>
+<form class="form-wrapper cf" ng-submit="submit('publications')">
+    <input ng-model="search_query" name="search_query" placeholder="Search here..." required>
     <button type="submit">Search</button>
 </form>
 

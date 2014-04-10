@@ -33,9 +33,9 @@
             	<div class="facet_title">Available facets</div>
 				<!-- bootstrap -->
 	             <accordion >
-				    <accordion-group ng-repeat="facet in facets" heading="{{mapping['facets'][facet] || facet}}" >
+				    <accordion-group ng-repeat="facet in facets" data-target="javascript:;" heading="{{mapping['facets'][facet] || facet}}" >
 						<!-- 'facet' is the actual facet name and term.term is the machine name for the term -->
-		            	<a ng-repeat="term in inactiveFacets[0][facet.toString()].terms | filter:facetFilter" class="child" href="javascript:;" ng-click="selectFacet(term.term, facet, term.count)" >
+		            	<a ng-repeat="term in inactiveFacets[0][facet.toString()].terms | filter:facetFilter" class="child"  ng-click="selectFacet(term.term, facet, term.count)" >
 		            		<span class="value">{{ mapping[facet][term.term] || term.term }}</span>
 		            		<span class="count">{{ term.count }}</span>
 		            	</a>
@@ -54,7 +54,7 @@
 		             <div ng-show="enableFacets" class="facets row">
 		            	<div class="facet_title" >Active facets</div>
 		            	<div ng-repeat="links in activeFacets" style="padding-left:10px">
-		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{links.term}} <span class="remove_facet"> x </span></a>
+		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{mapping[links.facet][links.term] || links.term}} <span class="remove_facet"> x </span></a>
 	            		</div>
 		            </div>
 	            </div>
