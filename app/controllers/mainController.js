@@ -116,7 +116,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 				break;
 			case 'educational' :
 				$scope.facets = ['set','learningResourceTypes','contexts','endUserRoles','language'];
-				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeintute","oeorganiceprints","aglrfskn","aglrgfsp"]};
+				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeorganiceprints","aglrfskn","aglrgfsp","aglrgfspoer","aglropencourseware"]};
 				mappings_file = 'config/educational_facets_mappings.json';
 				break;
 			case 'publications' :

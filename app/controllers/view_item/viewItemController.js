@@ -65,7 +65,7 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 
 				languageBlock.title !== undefined ? $scope.item_title = languageBlock.title : $scope.item_title = '-';
 
-				languageBlock.description !== undefined ? $scope.item_description = languageBlock.description : $scope.item_description ='-';
+				languageBlock.description !== undefined ? $scope.item_description = languageBlock.description.split("||") : $scope.item_description ='-';
 
 				languageBlock.keywords !== undefined ? $scope.item_keywords = languageBlock.keywords : $scope.item_keywords = '-';
 

@@ -13,7 +13,11 @@
 	<article id="main_content" class="col-md-12 ">
             <h3 id="itemTitle">{{item_title}}</h3>
         <ul>
-			 <li><span class="labels">Description : </span> <br> {{item_description}}</li>
+			 <li><span class="labels">Description : </span> <br>
+			 	{{item_description[0]}}
+			 	<br>{{item_description[1]}}
+			 	<br>{{item_description[2]}}
+			 	</li>
 			 <li><span class="labels">Keywords : </span> <br>
 			 	<a ng-repeat="keys in item_keywords" href="#/educational/search/?q={{keys}}" >{{keys}}, </a>
 			 </li>

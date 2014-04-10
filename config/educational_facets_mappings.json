@@ -311,6 +311,18 @@
   ],
   "set": [
     {
+      "human": "GFSP OERs",
+      "machine": "aglrgfspoer"
+    },
+    {
+      "human": "Open Course Ware",
+      "machine": "aglropencourseware"
+    },
+    {
+      "human": "JIFSAN",
+      "machine": "aglrjifsan"
+    },
+    {
       "human": "Green OER",
       "machine": "greenoer"
     },
