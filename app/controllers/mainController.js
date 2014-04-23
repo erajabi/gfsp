@@ -49,6 +49,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	/*-----------------------------------DEFAULT FINDER SETTINGS-----------------------------------*/
 		//API URL
 		$scope.api_path = 'http://api.greenlearningnetwork.com:8080/search-api/v1/';
+		/* $scope.api_path = 'http://212.189.145.245/search-api/v1/'; */
 		//SCHEMA : AKIF of AGRIF
 		$scope.schema = 'akif';
 
@@ -116,7 +117,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 				break;
 			case 'educational' :
 				$scope.facets = ['set','learningResourceTypes','contexts','endUserRoles','language'];
-				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeorganiceprints","aglrfskn","aglrgfsp","aglrgfspoer","aglropencourseware"]};
+				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeorganiceprints","aglrfskn","aglrgfsp","aglrgfspoer","aglropencourseware","aglrgfsppathways"]};
 				mappings_file = 'config/educational_facets_mappings.json';
 				break;
 			case 'publications' :

@@ -311,8 +311,12 @@
   ],
   "set": [
     {
-      "human": "GFSP OERs",
+      "human": "NCFDP",
       "machine": "aglrgfspoer"
+    },
+    {
+      "human": "GFSP Pathways",
+      "machine": "aglrgfsppathways"
     },
     {
       "human": "Open Course Ware",
