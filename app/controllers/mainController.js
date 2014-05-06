@@ -1,7 +1,6 @@
 /*
 * @author Mathioudakis Theodore
 * Agro-Know Technologies - 2013
-*
 */
 
 /*Define mainController controller in 'app' */
@@ -87,14 +86,15 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	//at Initialization searches '*' see:listingController > if(init)
 	$rootScope.query = "";
 
-
 	//Holds the results each time
 	$scope.results = [];
+
 	//Holds the pages for pagination
 	$scope.pages = [];
 
 	//Inactive facets
 	$scope.inactiveFacets = [];
+
 	//Active facets
 	$scope.activeFacets = [];
 
@@ -105,9 +105,17 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	$scope.mapping = {};
 
 	/*-----------------------------------FUNCTIONS-----------------------------------*/
-	//Initialize Finder's mappings
+
+	/*
+	* @function init_finder(schema, facets_type) : Initialize Finder
+	* @param schema {string} : defines the schema of the finder - options: 'akif', 'agrif'
+	* @param facets_type {string} : defines what facets we want in every case
+	*/
 	$scope.init_finder = function(schema, facets_type) {
 
+		// When defining the facet_type we want to use, we also can limit everyone of these facets and define a specific mapping file for facets.
+		// For now we have 'training', 'educational', 'publications'.
+		// We can easily add more just by adding a new case in the following switch, and also add other options related to facets_type
 		switch(facets_type) {
 			case 'training' :
 				$scope.facets = ['organization','languageBlocks.en.coverage','language', 'endUserRoles'];
@@ -128,6 +136,8 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 			    $scope.facets = ['set','language','contexts'];
 		}
 
+		// In every schema we define the specific elements we want to have in the snippets.
+		// Here can be added more schemas and also other options related to it.
 		switch(schema) {
 			case 'akif' :
 				$scope.snippetElements = [ "title", "description", "keywords" ]
@@ -139,7 +149,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 			    $scope.facets = ['set','language','contexts'];
 		}
 
-		//akif or agrif
+		//Check for selected schema. If nothing is selected we use as default the 'akif'.
 		if( schema!='akif' && schema!='agrif') {
 			$scope.schema = 'akif';
 		} else {
@@ -159,7 +169,9 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		    });
 	};
 
-	//Function for query submission
+	/*
+	* @function submit() : function for query submission
+	*/
 	$scope.submit = function() {
 		if (this.search_query) {
 		  $rootScope.query = "q=" + this.search_query;
@@ -169,7 +181,6 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		  $rootScope.currentPage = 1;
 
 		  $scope.findElements(false);
-		  //change query in location
 
 		}
 		else{
@@ -178,14 +189,20 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 
 	};
 
-	//Function for general update
+
+	/*
+	* @function update() : function for general update
+	*/
 	$scope.update = function() {
 		$scope.total = sharedProperties.getTotal();
 	}
 
-	//reset $location
+
+	/*
+	* @function resetLocation() : function for cleaning up the location
+	*/
 	$scope.resetLocation = function() {
-		console.log("--reset--");
+		//console.log("--reset--");
 		for(i in $scope.facets) {
 			$location.search($scope.facets[i],null);
 		}
@@ -196,14 +213,19 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		$scope.findElements(true);
 	}
 
-	//function for line break removal
-	//@param text : text to sanitize
+	/*
+	* @function sanitize() : function for line break removal
+	* @param text {string}: text to sanitize
+	*/
 	$scope.sanitize = function(text) {
 		text = text.replace(/(\r\n|\n|\r)/gm," ");
 		return text;
 	}
 
-	//function for truncate long texts (i.e. description in listing)
+	/*
+	* @function truncate() : function for truncate long texts (i.e. description in listing)
+	* @param text {string}: text to sanitize
+	*/
 	$scope.truncate = function(str, maxLength, suffix) {
 	    if(str.length > maxLength) {
 	        str = str.substring(0, maxLength + 1);
@@ -213,8 +235,11 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	    return str;
 	}
 
-	//SCROLL TO TOP
-		$scope.scrollToTop = function () {
+	/*
+	* @function scrollToTop() : function for scrolling to top of the page
+	* helpful when we have infinite vertical scroll
+	*/
+	$scope.scrollToTop = function () {
 		var element = document.body;
 		var to = 0;
 		var duration = 550;
@@ -235,13 +260,20 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	    animateScroll();
 	}
 
-		//t = current time, b = start value, c = change in value, d = duration
+		/*
+		* add function in Math for use it with scrollToTop
+		* @function easeInOutQuad(t, b, c, d)
+		* @param t = current time
+		* @param b = start value
+		* @param c = change in value
+		* @param d = duration
+		*/
 		Math.easeInOutQuad = function (t, b, c, d) {
-		t /= d/2;
-		if (t < 1) return c/2*t*t + b;
-		t--;
-		return -c/2 * (t*(t-2) - 1) + b;
-	};
+			t /= d/2;
+			if (t < 1) return c/2*t*t + b;
+			t--;
+			return -c/2 * (t*(t-2) - 1) + b;
+		};
 
 
 });

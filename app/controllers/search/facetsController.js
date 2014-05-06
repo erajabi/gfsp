@@ -1,12 +1,20 @@
+/*
+* @author Mathioudakis Theodore
+* Agro-Know Technologies - 2013
+*/
+
+
 listing.controller("facetsController", function($rootScope, $scope, $routeParams, $http, $location, sharedProperties){
 
-// selectFacet() function
-//@param term : the term we selected
-//@param parent : the parent facet
-//@param count : count of the term
-//
-// creates jsons {"term":"xxx","facet":"xxx","count":"xxx"}
-// in active facets and calls findElements() from listingController in order to use the new
+/*
+* @function selectFacet()
+* @param term : the term we selected
+* @param parent : the parent facet
+* @param count : count of the term
+*
+* creates jsons {"term":"xxx","facet":"xxx","count":"xxx"}
+* in active facets and calls findElements() from listingController in order to use the new
+*/
 $scope.selectFacet = function(term, parent, count)
 {
 
@@ -31,7 +39,15 @@ $scope.selectFacet = function(term, parent, count)
 
 }
 
-/*deselect facet function*/
+/*
+* @function deselectFacet()
+* @param term : the term we selected
+* @param parent : the parent facet
+* @param count : count of the term
+*
+* creates jsons {"term":"xxx","facet":"xxx","count":"xxx"}
+* in active facets and calls findElements() from listingController in order to use the new
+*/
 $scope.deselectFacet = function(facet)
 {
 	var index = $scope.activeFacets.indexOf(facet);

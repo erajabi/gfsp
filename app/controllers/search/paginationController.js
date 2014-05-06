@@ -1,7 +1,9 @@
 /*
 * @author Mathioudakis Theodore
 * Agro-Know Technologies - 2013
-*
+*/
+
+/*
 * in paginationController we keep all methods related to pagination
 * NOTE:
 * We need the following parameters to be defined in mainController
@@ -18,6 +20,8 @@ listing.controller("paginationController", function($rootScope, $scope, sharedPr
 
 	/*calculate and add pages in pages[] for viewing in front end
     	only if top or bottom pagination is visible */
+
+
 	$scope.initPagination = function(){
 		if($scope.enablePaginationTop || $scope.enablePaginationBottom){
 			  $scope.numOfPages = sharedProperties.getTotal()/$scope.pageSize;

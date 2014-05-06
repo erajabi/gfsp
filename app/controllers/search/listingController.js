@@ -1,11 +1,19 @@
+/*
+* @author Mathioudakis Theodore
+* Agro-Know Technologies - 2013
+*/
+
+
+
  listing.controller("listingController", function($rootScope, $routeParams, $scope, $http, $location, sharedProperties){
 
 	/* variable to calculate the progress of http get request */
 	$scope.http_get_prog = 37;
 
 	/*
-	* creates the request for Search API and makes the call
+	* @function findElements(init, pagination_type) : creates the request for Search API and makes the call
 	* @param init : true if function called in initialization.
+	* @param init
 	*/
 	$rootScope.findElements = function(init, pagination_type)
 	{
