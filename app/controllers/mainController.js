@@ -4,7 +4,7 @@
 */
 
 /*Define mainController controller in 'app' */
-listing.controller("mainController", function($rootScope, $scope, $http, $location, $modal, $log, sharedProperties){
+listing.controller("mainController", function($rootScope, $scope, $http, $routeParams, $location, $modal, $log, sharedProperties){
 
 	$scope.conf_file = 'config/conf.json';
 	var mappings_file = 'config/facets_mappings.json';
@@ -48,6 +48,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 	/*-----------------------------------DEFAULT FINDER SETTINGS-----------------------------------*/
 		//API URL
 		$scope.api_path = 'http://api.greenlearningnetwork.com:8080/search-api/v1/';
+		/* $scope.api_path = 'http://212.189.145.245/search-api/v1/'; */
 		//SCHEMA : AKIF of AGRIF
 		$scope.schema = 'akif';
 
@@ -124,7 +125,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 				break;
 			case 'educational' :
 				$scope.facets = ['set','learningResourceTypes','contexts','endUserRoles','language'];
-				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeintute","oeorganiceprints","aglrfskn","aglrgfsp"]};
+				$scope.limit_facets = {"set":["aglrfoodsafety","faocapacityportal","opunesco","aglrfaocdx","oeorganiceprints","aglrfskn","aglrgfsp","aglrgfspoer","aglropencourseware","aglrgfsppathways"]};
 				mappings_file = 'config/educational_facets_mappings.json';
 				break;
 			case 'publications' :
@@ -169,13 +170,16 @@ listing.controller("mainController", function($rootScope, $scope, $http, $locati
 		    });
 	};
 
-	/*
-	* @function submit() : function for query submission
-	*/
-	$scope.submit = function() {
+	//Function for query submission
+	//type : educational, publications, training
+	$scope.submit = function(type) {
 		if (this.search_query) {
 		  $rootScope.query = "q=" + this.search_query;
+		  $routeParams.q = this.search_query;
+
+		  if(type){ $location.path( type+'/search/' ); }
 		  $location.search('q',this.search_query);
+
 		  this.search_query = '';
 
 		  $rootScope.currentPage = 1;

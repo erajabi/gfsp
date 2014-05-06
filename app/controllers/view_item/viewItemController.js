@@ -10,6 +10,9 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 	/*****************************************************************************************************************/
 	/*							  	GENERAL												  						     */
 	/*****************************************************************************************************************/
+	var language_mapping=[], audience_mapping=[];
+	language_mapping['en'] = "English";
+
 	/*AKIF URL*/
 	$scope.akif = 'http://54.228.180.124:8080/search-api/v1/akif/';
 	//$scope.item_resource_id = '';
@@ -62,7 +65,7 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 
 				languageBlock.title !== undefined ? $scope.item_title = languageBlock.title : $scope.item_title = '-';
 
-				languageBlock.description !== undefined ? $scope.item_description = languageBlock.description : $scope.item_description ='-';
+				languageBlock.description !== undefined ? $scope.item_description = languageBlock.description.split("||") : $scope.item_description ='-';
 
 				languageBlock.keywords !== undefined ? $scope.item_keywords = languageBlock.keywords : $scope.item_keywords = '-';
 
@@ -74,7 +77,7 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 			thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
 
 			//LANGUAGE
-			thisJson.expressions[0].language !== undefined ? $scope.item_language = thisJson.expressions[0].language : $scope.item_language = '-';
+			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
 
 			//AGE RANGE
 			thisJson.tokenBlock.ageRange !== undefined ? $scope.item_age_range = thisJson.tokenBlock.ageRange : $scope.item_age_range = '-';

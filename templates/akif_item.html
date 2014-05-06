@@ -3,15 +3,21 @@
 <!-- VIEW ITEM -->
 <hr>
 <div id="view_item" ng-controller="viewItemController" ng-init="getItem()">
-<form class="form-wrapper cf" action="educational/search/">
-    <input name="q" type="text" placeholder="Search here..." required>
+
+
+<form ng-submit="submit('educational')" class="form-wrapper cf" >
+    <input ng-model="search_query" name="search_query" type="text" placeholder="Search here..." >
     <button type="submit">Search</button>
 </form>
 
 	<article id="main_content" class="col-md-12 ">
             <h3 id="itemTitle">{{item_title}}</h3>
         <ul>
-			 <li><span class="labels">Description : </span> <br> {{item_description}}</li>
+			 <li><span class="labels">Description : </span> <br>
+			 	{{item_description[0]}}
+			 	<br>{{item_description[1]}}
+			 	<br>{{item_description[2]}}
+			 	</li>
 			 <li><span class="labels">Keywords : </span> <br>
 			 	<a ng-repeat="keys in item_keywords" href="#/educational/search/?q={{keys}}" >{{keys}}, </a>
 			 </li>
@@ -32,7 +38,7 @@
 				 <li><span class="labels">Learning Resource Types: </span> <span ng-repeat="types in item_resource_types"> {{types}}, </span></li>
 				 <li><span class="labels">Key Audience: </span> <span ng-repeat="roles in item_roles"> {{roles}}, </span></li>
 				 <li><span class="labels">Context: </span> <span ng-repeat="context in item_context"> {{context}}, </span></li>
-				 <li><span class="labels">Age Range: </span> {{item_age_range}}</li>
+				 <!-- <li><span class="labels">Age Range: </span> {{item_age_range}}</li> -->
 			 </ul>
 		</div>
 	</article>

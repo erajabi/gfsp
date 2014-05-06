@@ -46,6 +46,14 @@ body{
 		display: inline-block;
 		width:100%;
 	}
+
+	a {
+	 	cursor: pointer;
+
+		&:hover {
+			text-decoration: none;
+		}
+	}
 }
 
 
@@ -208,7 +216,7 @@ footer {
 	}
 
 	.publications {
-		background-image: url('../assets/images/publications_inactive.png');
+		background-image: url('../assets/images/publications.png');
 
 		&:hover {
 			text-decoration: none;
@@ -265,7 +273,7 @@ footer {
 	}
 
 	.ncfpd {
-		background-image: url('../assets/images/providers/ncfpd_gray.png');
+		background-image: url('../assets/images/providers/ncfpd.png');
 
 		&:hover {
 /* 			background-image: url('../assets/images/providers/ncfpd.png'); */
@@ -305,6 +313,15 @@ footer {
 
 	.twb {
 		background-image: url('../assets/images/providers/twb_gray.jpg');
+		background-position:center center;
+
+		&:hover {
+/* 			background-image: url('../assets/images/providers/twb.jpg'); */
+		}
+	}
+
+	.ocwc {
+		background-image: url('../assets/images/providers/ocwc.png');
 		background-position:center center;
 
 		&:hover {
@@ -497,6 +514,7 @@ footer {
 
 		.value{
 			float:left;
+			width:130px;
 		}
 
 		.count{

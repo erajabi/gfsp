@@ -53,7 +53,7 @@
 		             <div ng-show="enableFacets" class="facets row">
 		            	<div class="facet_title" >Active facets</div>
 		            	<div ng-repeat="links in activeFacets" style="padding-left:10px">
-		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{links.term}} <span class="remove_facet"> x </span></a>
+		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{mapping[links.facet][links.term] || links.term}} <span class="remove_facet"> x </span></a>
 	            		</div>
 		            </div>
 	            </div>
