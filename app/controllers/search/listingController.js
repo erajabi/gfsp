@@ -4,17 +4,17 @@
 */
 
 
-
+//Define listingController controller in app
+//----
  listing.controller("listingController", function($rootScope, $routeParams, $scope, $http, $location, sharedProperties){
 
-	/* variable to calculate the progress of http get request */
+	// variable to calculate the progress of http get request
 	$scope.http_get_prog = 37;
 
-	/*
-	* @function findElements(init, pagination_type) : creates the request for Search API and makes the call
-	* @param init : true if function called in initialization.
-	* @param init
-	*/
+
+	//@function `findElements(init, pagination_type)` : creates the request for Search API and makes the call
+	//@param init : true if function called in initialization.
+	//@param init
 	$rootScope.findElements = function(init, pagination_type)
 	{
 		console.log('find_elements');
@@ -58,7 +58,7 @@
 		var query_active_facets = '';
 
 		if($scope.enableFacets){
-		//create the query for the AVAILABLE FACETS
+			//create the query for the AVAILABLE FACETS
 			if($scope.facets.length>0) {
 		    	query_facets +='&facets=';
 		    	for(facet in $scope.facets) {
@@ -92,7 +92,6 @@
 		var limitFacetsNumber = '&facet_size='+$scope.limit_facets_number;
 
 		//FACETS LIMITATION
-		//!! FIX TO CHANGE FROM conf.json
 		var limitFacets = '';
 		for(i in $scope.limit_facets) {
 			limitFacets += '&' + i + "=";
@@ -106,14 +105,12 @@
 			}
 		}
 
-		/*create the FINAL QUERY
-		* the  followings DOESN'T shown in URL
-		* i.e
-		* query_facets : '&facets=set,language,contexts'
-		* query_pagination : '&page_size=15&page=1'
-		* limitFacets : '&set=oeintute&language=en,fr'
-		* limitFacetsNumber : '&limitFacetsNumber'
-		*/
+		//create the FINAL QUERY
+		//the  followings DOESN'T shown in URL
+		//- query_facets : '&facets=set,language,contexts'
+		//- query_pagination : '&page_size=15&page=1'
+		//- limitFacets : '&set=oeintute&language=en,fr'
+		//- limitFacetsNumber : '&limitFacetsNumber'
 		var query = $scope.api_path + $scope.schema + '?' + $rootScope.query + query_facets + query_active_facets + query_pagination + limitFacets + limitFacetsNumber;
 
 
@@ -123,7 +120,7 @@
 		for(tempfacet in $routeParams){
 			if(tempfacet!=0){
 				console.log(tempfacet);
-/* 				$location.search(activeFacetSplit[tempfacet].split('=')[0],activeFacetSplit[tempfacet].split('=')[1]); */
+				/*$location.search(activeFacetSplit[tempfacet].split('=')[0],activeFacetSplit[tempfacet].split('=')[1]); */
 			}
 		}
 
@@ -137,7 +134,8 @@
 
 	}
 
-	//search() works with PAGINATION. SERVES CONTENT PER PAGE
+	//function `search()` works with PAGINATION.
+	//Serves content per page
 	$scope.search = function(query) {
 
 		$http.get(query).success(function(data) {
@@ -182,7 +180,8 @@
 	}
 
 
-	//searchMore() works with LOAD MORE. ADDS CONTENT PER PAGE
+	//function `searchMore()` works with LOAD MORE.
+	//Adds content per page
 	$scope.searchMore = function(query) {
 
 		$http.get(query).success(function(data) {
@@ -217,12 +216,9 @@
 	}
 
 
-
-	/*
-	* gets the json and create a new one based on the specs of the snippet_elements
-	* @param thisJson : json from result
-	* @param snippet_elements : array with selected elements we want to show in listing (i.e. title, description...)
-	*/
+	//gets the json and create a new one based on the specs of the snippet_elements
+	//@param thisJson : json from result
+	//@param snippet_elements : array with selected elements we want to show in listing (i.e. title, description...)
 	$scope.getSnippet = function(thisJson, snippet_elements)
 	{
 		var temp = "";
@@ -285,12 +281,11 @@
 			temp = '{' + equals + '}';
 
 			//return every snippet as JSON
-			//console.log(temp);
 			return JSON.parse($scope.sanitize(temp));
 		}
 		else
 		{
-			//console.log('Element with id: ' + element.identifier + ' doesn\'t support \"' + $scope.selectedLanguage + '\" language');
+			/* console.log('Element with id: ' + element.identifier + ' doesn\'t support \"' + $scope.selectedLanguage + '\" language'); */
 			return null;
 		}
 	}

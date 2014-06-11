@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>agris-viewItemController.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>agris-viewItemController.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-comment">/*
+* @author Mathioudakis Theodore
+* Agro-Know Technologies - 2013
+*
+*/</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h2 id="define-agris-viewitemcontroller-controller-in-app-">Define agris-ViewItemController controller in ‘app’</h2>
+<p>variation of view item based on special needs of Agris.
+We need to show different things here than akif view item</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+listing.controller(<span class="hljs-string">"agris-viewItemController"</span>, <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">($scope, $http, $location, $routeParams)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>GENERAL</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> language_mapping=[], audience_mapping=[];
+	language_mapping[<span class="hljs-string">'en'</span>] = <span class="hljs-string">"English"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>path to file with the specific mappings needed</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	<span class="hljs-keyword">var</span> classif_mapping_file = <span class="hljs-string">'../config/classification_mapping_min.json'</span>;
+	$scope.classif_mapping = []; <span class="hljs-comment">// contains all the code mappings</span>
+
+	$http.get(classif_mapping_file).success(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span>
+		<span class="hljs-keyword">var</span> classification = data[<span class="hljs-string">'classification'</span>];
+    	<span class="hljs-keyword">for</span>(j <span class="hljs-keyword">in</span> classification) {
+    		$scope.classif_mapping[classification[j].code] = classification[j].value;
+    	}
+    });</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>AKIF URL</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	$scope.api_path = <span class="hljs-string">'http://api.greenlearningnetwork.com/search-api/v1/agrif/'</span>;
+	<span class="hljs-comment">/* $scope.item_resource_id = ''; */</span>
+	$scope.item_resource_url = <span class="hljs-string">''</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Elements default values</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	$scope.item_title = <span class="hljs-string">"No title available"</span>;
+	$scope.item_description = <span class="hljs-string">"No description"</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>/ FUNCTIONS</p>
+
+            </div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <ul>
+<li>function <code>getItem</code>:
+this functions runs on init, reads url parameters and make the specific call to our API</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>	$scope.getItem = <span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">()</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>../ID<em>SET (maybe id contains ‘</em>‘ so we need to find which one is ID and which is the set</p>
+<ul>
+<li>hack to solve problem with AGRIS ids.</li>
+</ul>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>		<span class="hljs-keyword">var</span> id_set = $routeParams.itemId.split(<span class="hljs-string">'_'</span>);
+		<span class="hljs-keyword">var</span> item_identifier = <span class="hljs-string">''</span>;
+		<span class="hljs-keyword">for</span>( <span class="hljs-keyword">var</span> i=<span class="hljs-number">0</span>, length=id_set.length; i&lt;length-<span class="hljs-number">1</span>; i++ ) {
+			console.log(i, id_set[i]);
+			<span class="hljs-keyword">if</span>( i==<span class="hljs-number">0</span> ) {
+				item_identifier = id_set[i];
+			} <span class="hljs-keyword">else</span> {
+				item_identifier = item_identifier + <span class="hljs-string">'_'</span> + id_set[i];
+			}
+		}
+		<span class="hljs-keyword">var</span> item_set = id_set[id_set.length-<span class="hljs-number">1</span>];; <span class="hljs-comment">//item SET</span>
+		$scope.item_resource_url = <span class="hljs-string">''</span>;
+
+
+		<span class="hljs-keyword">var</span> headers = {<span class="hljs-string">'Content-Type'</span>:<span class="hljs-string">'application/json'</span>,<span class="hljs-string">'Accept'</span>:<span class="hljs-string">'application/json;charset=utf-8'</span>};
+
+		$http({
+			method : <span class="hljs-string">'GET'</span>,
+			url : $scope.api_path + item_set + <span class="hljs-string">'/'</span> + item_identifier, <span class="hljs-comment">//..agrif/CAAS/asd56a4sa7fs4a5sf4</span>
+			type: <span class="hljs-string">'json'</span>,
+			headers : headers
+		})
+		.success(<span class="hljs-function"><span class="hljs-keyword">function</span><span class="hljs-params">(data)</span> {</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>parse array and create an JS Object Array
+every item is a JSON
+we need only one item from the response, thus we add it in a variable use it easier</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">var</span> thisJson = data.results[<span class="hljs-number">0</span>];
+			console.log(thisJson);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>WE USE ONLY ‘EN’ FOR NOW</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span> ( thisJson.languageBlocks.en !== <span class="hljs-literal">undefined</span> ) {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>we take the languageBlock for ‘en’ from the specific json and add it in a variable.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				languageBlock = thisJson.languageBlocks[<span class="hljs-string">'en'</span>];</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>title</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				languageBlock.title !== <span class="hljs-literal">undefined</span> ? $scope.item_title = languageBlock.title : $scope.item_title = <span class="hljs-string">'-'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>abstract</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				languageBlock.abstract !== <span class="hljs-literal">undefined</span> ? $scope.item_abstract = languageBlock.abstract : $scope.item_abstract =<span class="hljs-string">'-'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>keywords</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>				<span class="hljs-keyword">if</span>(languageBlock.keywords !== <span class="hljs-literal">undefined</span>) {
+					<span class="hljs-keyword">var</span> keywords = languageBlock.keywords[<span class="hljs-number">0</span>].split(<span class="hljs-string">';'</span>);
+					$scope.item_keywords = keywords;
+				} <span class="hljs-keyword">else</span> {
+					$scope.item_keywords = <span class="hljs-string">'-'</span>;
+				}
+
+			}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>citation</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span>( thisJson.expressions[<span class="hljs-number">0</span>] &amp;&amp; thisJson.expressions[<span class="hljs-number">0</span>].citation &amp;&amp; thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>] ) {
+				$scope.item_citation = <span class="hljs-string">''</span>;
+				console.log(thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>]);
+
+				thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].title ? $scope.item_citation += thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].title[<span class="hljs-number">0</span>]+<span class="hljs-string">', '</span> : $scope.item_citation +=<span class="hljs-string">''</span>;
+				thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].ISSN ? $scope.item_citation += thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].ISSN[<span class="hljs-number">0</span>]+<span class="hljs-string">', '</span> : $scope.item_citation +=<span class="hljs-string">''</span>;
+				thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].citationNumber ? $scope.item_citation += thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].citationNumber[<span class="hljs-number">0</span>]+<span class="hljs-string">', '</span> : $scope.item_citation +=<span class="hljs-string">''</span>;
+				thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].citationChronology ? $scope.item_citation += thisJson.expressions[<span class="hljs-number">0</span>].citation[<span class="hljs-number">0</span>].citationChronology[<span class="hljs-number">0</span>] : $scope.item_citation +=<span class="hljs-string">''</span>;
+
+
+			} <span class="hljs-keyword">else</span> {
+				$scope.item_citation = <span class="hljs-string">'-'</span>;
+			}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>language</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			thisJson.expressions[<span class="hljs-number">0</span>].language !== <span class="hljs-literal">undefined</span> ? $scope.item_language = language_mapping[thisJson.expressions[<span class="hljs-number">0</span>].language] : $scope.item_language = <span class="hljs-string">'-'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>pages</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			thisJson.expressions[<span class="hljs-number">0</span>].manifestations[<span class="hljs-number">0</span>].size !== <span class="hljs-literal">undefined</span> ? $scope.item_pages = thisJson.expressions[<span class="hljs-number">0</span>].manifestations[<span class="hljs-number">0</span>].size : $scope.item_pages = <span class="hljs-string">'-'</span>;
+			console.log(thisJson.expressions[<span class="hljs-number">0</span>].manifestations[<span class="hljs-number">0</span>]);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>creator</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span>( thisJson.creators ) {
+				$scope.item_creators = <span class="hljs-string">''</span>;
+				<span class="hljs-keyword">for</span>( i <span class="hljs-keyword">in</span> thisJson.creators) {
+					$scope.item_creators += thisJson.creators[i].name;
+					<span class="hljs-keyword">if</span>(i != thisJson.creators.length-<span class="hljs-number">1</span>) {
+						$scope.item_creators += <span class="hljs-string">', '</span>;
+					}
+				}
+			} <span class="hljs-keyword">else</span> {
+				$scope.item_creators = <span class="hljs-string">'-'</span>;
+			}</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>classification</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>			<span class="hljs-keyword">if</span>(thisJson.controlled &amp;&amp; thisJson.controlled.classification &amp;&amp; thisJson.controlled.classification.CCL) {
+				$scope.item_classification = thisJson.controlled.classification.CCL.split(<span class="hljs-string">','</span>);
+			} <span class="hljs-keyword">else</span> {
+				$scope.item_classification = <span class="hljs-string">'-'</span>;
+			}
+
+		})
+
+	};
+
+});</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

@@ -3,8 +3,10 @@
 * Agro-Know Technologies - 2013
 */
 
-/*Define mainController controller in 'app' */
-listing.controller("mainController", function($rootScope, $scope, $http, $routeParams, $location, $modal, $log, sharedProperties){
+//Define mainController controller in 'app'
+//-----
+// needed services : $rootScope, $scope, $http, $routeParams, $location, sharedProperties
+listing.controller("mainController", function($rootScope, $scope, $http, $routeParams, $location, sharedProperties){
 
 	$scope.conf_file = 'config/conf.json';
 	var mappings_file = 'config/facets_mappings.json';
@@ -19,8 +21,9 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	//get properties from conf.json
 	$http.get($scope.conf_file)
 	.success(function(data) {
-	/*-----------------------------------FINDER SETTINGS FROM CONFIG FILE-----------------------------------*/
-		//$scope.limit_facets = data.limit_facets;
+	//FINDER SETTINGS FROM CONFIG FILE
+	//-----
+		/* $scope.limit_facets = data.limit_facets; */
 		$scope.api_path = data.baseUrl;
 		$scope.enablePaginationTop = data.enablePaginationTop;
 		$scope.enablePaginationBottom = data.enablePaginationBottom;
@@ -37,22 +40,23 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 		$scope.pageSize = data.pageSize;
 		$scope.selectedLanguage = data.selectedLanguage;
 		$scope.enableFacets = data.enableFacets;
-		/* 		$scope.facets = data.facets; */
+		/*$scope.facets = data.facets; */
 		/* $scope.snippetElements = data.snippetElements; */
 		$scope.maxTextLength = data.maxTextLength;
 		$scope.limit_facets_number = data.limit_facets_number;
 		$scope.findElements(true);
     })
 	.error(function(err){
-		//console.log(err);
-	/*-----------------------------------DEFAULT FINDER SETTINGS-----------------------------------*/
+	// DEFAULT FINDER SETTINGS
+	//-----
+	// in case of error in reading config file we enter the .error case
 		//API URL
-		$scope.api_path = 'http://api.greenlearningnetwork.com:8080/search-api/v1/';
-		/* $scope.api_path = 'http://212.189.145.245/search-api/v1/'; */
+		$scope.api_path = 'http://api.greenlearningnetwork.com/search-api/v1/';
+
 		//SCHEMA : AKIF of AGRIF
 		$scope.schema = 'akif';
 
-		//--PAGINATION
+		//PAGINATION
 		//Enables top pagination : true/false
 		$scope.enablePaginationTop = true;
 		//Enables bottom pagination : true/false
@@ -65,6 +69,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 		$scope.pageSize = 15;
 		//Selected Language
 		$scope.selectedLanguage='en';
+
 		//FACETS
 		//Enables the facets : true/false
 		$scope.enableFacets = true;
@@ -81,10 +86,11 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	});
 
 
-	/*-----------------------------------VARIOUS VARIABLES in the scope-----------------------------------*/
+	//VARIOUS VARIABLES in the scope
+	//-----
 
 	//this is the variable that created in the search box.
-	//at Initialization searches '*' see:listingController > if(init)
+	//at Initialization searches '*' ( see:listingController > if(init) )
 	$rootScope.query = "";
 
 	//Holds the results each time
@@ -105,18 +111,20 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	//Mappings
 	$scope.mapping = {};
 
-	/*-----------------------------------FUNCTIONS-----------------------------------*/
+	// FUNCTIONS
+	//-----
 
-	/*
-	* @function init_finder(schema, facets_type) : Initialize Finder
-	* @param schema {string} : defines the schema of the finder - options: 'akif', 'agrif'
-	* @param facets_type {string} : defines what facets we want in every case
-	*/
+
+	//@function `init_finder(schema, facets_type)` : Initialize Finder
+	//@param schema {string} : defines the schema of the finder - options: 'akif', 'agrif'
+	//@param facets_type {string} : defines what facets we want in every case
 	$scope.init_finder = function(schema, facets_type) {
 
 		// When defining the facet_type we want to use, we also can limit everyone of these facets and define a specific mapping file for facets.
 		// For now we have 'training', 'educational', 'publications'.
 		// We can easily add more just by adding a new case in the following switch, and also add other options related to facets_type
+		// - HINT: variables here have the same logic with the config.json. So we can comment variables in reading from config file and make replacements here.
+		// If we want to use config.json we can comment variables here and uncomment there.
 		switch(facets_type) {
 			case 'training' :
 				$scope.facets = ['organization','languageBlocks.en.coverage','language', 'endUserRoles'];
@@ -130,7 +138,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 				break;
 			case 'publications' :
 				$scope.facets = ['language', 'controlled.type', 'controlled.classification.CCL', 'publisher.date'];
-				//$scope.limit_facets = data.limit_facets;
+				/* $scope.limit_facets = data.limit_facets; */
 				mappings_file = 'config/publications_facets_mappings.json';
 				break;
 			default:
@@ -139,6 +147,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 
 		// In every schema we define the specific elements we want to have in the snippets.
 		// Here can be added more schemas and also other options related to it.
+		// - HINT: Here we can configure snippets element in the same way we did it above
 		switch(schema) {
 			case 'akif' :
 				$scope.snippetElements = [ "title", "description", "keywords" ]
@@ -150,14 +159,13 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 			    $scope.facets = ['set','language','contexts'];
 		}
 
-		//Check for selected schema. If nothing is selected we use as default the 'akif'.
+		//Check for selected schema.
+		//If nothing is selected we use as default the 'akif'.
 		if( schema!='akif' && schema!='agrif') {
 			$scope.schema = 'akif';
 		} else {
 			$scope.schema = schema;
 		}
-
-
 
 		//store the mapping for human reading languages
 		$http.get(mappings_file).success(function(data) {
@@ -172,6 +180,8 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 
 	//Function for query submission
 	//type : educational, publications, training
+	//@function `submit(type)` : Initialize Finder
+	//@param type {string} : educational, publications, training
 	$scope.submit = function(type) {
 		if (this.search_query) {
 		  $rootScope.query = "q=" + this.search_query;
@@ -194,9 +204,9 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	};
 
 
-	/*
-	* @function update() : function for general update
-	*/
+
+	//@function update() : function for general update
+	//
 	$scope.update = function() {
 		$scope.total = sharedProperties.getTotal();
 	}
@@ -206,7 +216,6 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	* @function resetLocation() : function for cleaning up the location
 	*/
 	$scope.resetLocation = function() {
-		//console.log("--reset--");
 		for(i in $scope.facets) {
 			$location.search($scope.facets[i],null);
 		}
@@ -217,19 +226,16 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 		$scope.findElements(true);
 	}
 
-	/*
-	* @function sanitize() : function for line break removal
-	* @param text {string}: text to sanitize
-	*/
+	//@function `sanitize()` : function for line break removal
+	//@param text {string}: text to sanitize
 	$scope.sanitize = function(text) {
 		text = text.replace(/(\r\n|\n|\r)/gm," ");
 		return text;
 	}
 
-	/*
-	* @function truncate() : function for truncate long texts (i.e. description in listing)
-	* @param text {string}: text to sanitize
-	*/
+	//@function `truncate()` : function for truncate long texts (i.e. description in listing)
+	//@param text {string}: text to sanitize
+
 	$scope.truncate = function(str, maxLength, suffix) {
 	    if(str.length > maxLength) {
 	        str = str.substring(0, maxLength + 1);
@@ -239,10 +245,8 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	    return str;
 	}
 
-	/*
-	* @function scrollToTop() : function for scrolling to top of the page
-	* helpful when we have infinite vertical scroll
-	*/
+	// @function `scrollToTop()` : function for scrolling to top of the page
+	// helpful when we have infinite vertical scroll
 	$scope.scrollToTop = function () {
 		var element = document.body;
 		var to = 0;
@@ -264,14 +268,12 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	    animateScroll();
 	}
 
-		/*
-		* add function in Math for use it with scrollToTop
-		* @function easeInOutQuad(t, b, c, d)
-		* @param t = current time
-		* @param b = start value
-		* @param c = change in value
-		* @param d = duration
-		*/
+		//add function `easeInOutQuad` in Math for use it with scrollToTop
+		//@function easeInOutQuad(t, b, c, d)
+		//@param t = current time
+		//@param b = start value
+		//@param c = change in value
+		//@param d = duration
 		Math.easeInOutQuad = function (t, b, c, d) {
 			t /= d/2;
 			if (t < 1) return c/2*t*t + b;

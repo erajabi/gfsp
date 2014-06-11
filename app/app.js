@@ -4,19 +4,19 @@
 */
 
 
-/*Define ng-app module*/
+
+
+//Define ng-app module
+//---
+// define the module `akListing` wth the specific services we want to import.
+// `ngroute` is needed for routing and `ui.bootstrap` for the bootstrap directives
+
 var listing = angular.module('akListing',['ngRoute', 'ui.bootstrap']);
-/* var listing = angular.module('akListing',['ngRoute','mainController','listingController']); */
 
-/* $locationProvider Configuration */
-/*
-listing.config(['$locationProvider',
-	function($locationProvider) {
-		$locationProvider.html5Mode(true)
-	}]);
-*/
 
-/* Shared Properties Service */
+// Shared Properties Service
+//------
+// services are scope-irrelevant and can be used everywhere in the app.
 listing.service('sharedProperties',
 	function () {
 	    var total = 0;
@@ -35,12 +35,15 @@ listing.service('sharedProperties',
 	});
 
 
-/*Routing*/
+// Routing
+//--------
+// The app's routing. We are having different templates and configuration files
+// for each type we want to show.
 listing.config(['$routeProvider',
 	function($routeProvider) {
 		$routeProvider.
-			// - (AKIF)
-			//training
+			//AKIF
+			// - training
 			when('/training/search/', {
 				templateUrl: 'templates/akif_train_search.html',
 				controller: 'listingController'
@@ -49,7 +52,7 @@ listing.config(['$routeProvider',
 				templateUrl: 'templates/akif_train_search.html',
 				controller: 'listingController'
 			}).
-			//educational resources
+			// - educational resources
 			when('/educational/search/', {
 				templateUrl: 'templates/akif_edu_search.html',
 				controller: 'listingController'
@@ -58,7 +61,7 @@ listing.config(['$routeProvider',
 				templateUrl: 'templates/akif_edu_search.html',
 				controller: 'listingController'
 			}).
-			//view-item
+			// - view-item
 			when('/item', {
 				templateUrl: 'templates/akif_item.html',
 				controller: 'viewItemController'
@@ -68,9 +71,8 @@ listing.config(['$routeProvider',
 				controller: 'viewItemController'
 			}).
 
-
-			// - (AGRIF)
-			//research publications
+			//AGRIF
+			// - research publications
 			when('/publications/search/', {
 				templateUrl: 'templates/agrif_search.html',
 				controller: 'listingController'
@@ -88,7 +90,7 @@ listing.config(['$routeProvider',
 				controller: 'agris-viewItemController'
 			}).
 
-			//general
+			//General
 			when('/', {
 				templateUrl: 'templates/main.html',
 				controller: 'mainController'

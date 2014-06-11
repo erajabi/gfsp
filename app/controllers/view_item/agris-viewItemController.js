@@ -4,17 +4,19 @@
 *
 */
 
-/*Define viewItemController controller in 'app' */
+//Define agris-ViewItemController controller in 'app'
+//----
+// variation of view item based on special needs of Agris.
+// We need to show different things here than akif view item
+
 listing.controller("agris-viewItemController", function($scope, $http, $location, $routeParams) {
 
 
-	/*****************************************************************************************************************/
-	/*							  	GENERAL												  						     */
-	/*****************************************************************************************************************/
-
+	//GENERAL
 	var language_mapping=[], audience_mapping=[];
 	language_mapping['en'] = "English";
 
+	//path to file with the specific mappings needed
 	var classif_mapping_file = '../config/classification_mapping_min.json';
 	$scope.classif_mapping = []; // contains all the code mappings
 
@@ -25,34 +27,23 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
     	}
     });
 
-	/*AKIF URL*/
-	$scope.api_path = 'http://api.greenlearningnetwork.com:8080/search-api/v1/agrif/';
-	//$scope.item_resource_id = '';
+	//AKIF URL
+	$scope.api_path = 'http://api.greenlearningnetwork.com/search-api/v1/agrif/';
+	/* $scope.item_resource_id = ''; */
 	$scope.item_resource_url = '';
-	$scope.user_id = 23;
-	$scope.domain = 'http://greenlearningnetwork.org';
-	$scope.ip = '83.212.100.142';
-
-
-	$scope.item_number_of_visitors = 0;
-	$scope.item_average_rating = 'no rating available yet';
-	$scope.item_tags = ['No tags available yet.'];
-	$scope.enable_rating_1 = true;
-	$scope.enable_rating_2 = true;
-	$scope.enable_rating_3 = true;
 
 	//Elements default values
-	$scope.item_title = "No title available for this language";
-	$scope.item_description = "No description available for this language";
+	$scope.item_title = "No title available";
+	$scope.item_description = "No description";
 
-	/*****************************************************************************************************************/
-	/*							  	FUNCTIONS												  						 */
-	/*****************************************************************************************************************/
+	/// FUNCTIONS
 
-	/************************************************** GET ITEM *****************************/
+	//- function `getItem`:
+	// this functions runs on init, reads url parameters and make the specific call to our API
 	$scope.getItem = function() {
-
-		var id_set = $routeParams.itemId.split('_'); //../ID_SET (maybe id contains '_' so we need to find which one is ID and which is the set
+		//../ID_SET (maybe id contains '_' so we need to find which one is ID and which is the set
+		//- hack to solve problem with AGRIS ids.
+		var id_set = $routeParams.itemId.split('_');
 		var item_identifier = '';
 		for( var i=0, length=id_set.length; i<length-1; i++ ) {
 			console.log(i, id_set[i]);
@@ -62,7 +53,6 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
 				item_identifier = item_identifier + '_' + id_set[i];
 			}
 		}
-
 		var item_set = id_set[id_set.length-1];; //item SET
 		$scope.item_resource_url = '';
 
@@ -78,20 +68,22 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
 		.success(function(data) {
 			//parse array and create an JS Object Array
 			//every item is a JSON
+			// we need only one item from the response, thus we add it in a variable use it easier
 			var thisJson = data.results[0];
 			console.log(thisJson);
+
 			//WE USE ONLY 'EN' FOR NOW
 			if ( thisJson.languageBlocks.en !== undefined ) {
-
+				//we take the languageBlock for 'en' from the specific json and add it in a variable.
 				languageBlock = thisJson.languageBlocks['en'];
 
-				//TITLE
+				//title
 				languageBlock.title !== undefined ? $scope.item_title = languageBlock.title : $scope.item_title = '-';
 
-				//ABSTRACT
+				//abstract
 				languageBlock.abstract !== undefined ? $scope.item_abstract = languageBlock.abstract : $scope.item_abstract ='-';
 
-				//KEYWORDS
+				//keywords
 				if(languageBlock.keywords !== undefined) {
 					var keywords = languageBlock.keywords[0].split(';');
 					$scope.item_keywords = keywords;
@@ -101,7 +93,7 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
 
 			}
 
-			//CITATION
+			//citation
 			if( thisJson.expressions[0] && thisJson.expressions[0].citation && thisJson.expressions[0].citation[0] ) {
 				$scope.item_citation = '';
 				console.log(thisJson.expressions[0].citation[0]);
@@ -116,13 +108,14 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
 				$scope.item_citation = '-';
 			}
 
-			//LANGUAGE
+			//language
 			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
 
-			//PAGES
+			//pages
 			thisJson.expressions[0].manifestations[0].size !== undefined ? $scope.item_pages = thisJson.expressions[0].manifestations[0].size : $scope.item_pages = '-';
 			console.log(thisJson.expressions[0].manifestations[0]);
-			//CREATOR
+
+			//creator
 			if( thisJson.creators ) {
 				$scope.item_creators = '';
 				for( i in thisJson.creators) {
@@ -135,7 +128,7 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
 				$scope.item_creators = '-';
 			}
 
-			//CLASSIFICATION
+			//classification
 			if(thisJson.controlled && thisJson.controlled.classification && thisJson.controlled.classification.CCL) {
 				$scope.item_classification = thisJson.controlled.classification.CCL.split(',');
 			} else {

@@ -3,19 +3,15 @@
 * Agro-Know Technologies - 2013
 */
 
-/*
-* in paginationController we keep all methods related to pagination
-* NOTE:
-* We need the following parameters to be defined in mainController
-* paginationTop : true/false
-* paginationBottom : true/false
-* $scope.pageSize : number of results per page
-* $scope.total : number of total results
-* $scope.pages : holds the pages for pagination
-*
-*/
-
-
+//Define paginationController controller in 'app'
+//-----
+//- NOTE:
+//We need the following parameters to be defined in mainController
+//- `paginationTop` : true/false
+//- `paginationBottom` : true/false
+//- `$scope.pageSize` : number of results per page
+//- `$scope.total` : number of total results
+//- `$scope.pages` : holds the pages for pagination
 listing.controller("paginationController", function($rootScope, $scope, sharedProperties){
 
 	/*calculate and add pages in pages[] for viewing in front end
